@@ -16,4 +16,8 @@
     <color name="colorTrendingStart">#00B09B</color>
     <color name="colorTrendingEnd">#96C93D</color>
     <color name="colorDivider">#D6D6D6</color>
+    <color name="color_azul">#3D6DE3</color>
+    <color name="color_amarillo_bajo">#F3D878</color>
+    <color name="color_verde">#4AA344</color>
+    <color name="color_verde_aceptado">#2FAF83</color>
 </resources>

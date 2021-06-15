@@ -2,4 +2,66 @@
     <string name="app_name">Pharmacy</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="title_activity_pantalla_principal">PantallaPrincipal</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+    <string name="btn_iniciar_session">Iniciar sesion</string>
+    <string name="btn_registro">Crear cuenta nueva</string>
+    <string name="titulo_login">Iniciar sesión con tu cuenta</string>
+
+    <string name="titulo_popup">Titulo</string>
+    <string name="telefono_popup">Telefono</string>
+    <string name="precio_popup">Precio</string>
+    <string name="descripcion_popup">Descripcion</string>
+
+    <string name="paypal_pago_titulo">Carrito de compra</string>
+    <string name="paypal_pago_nombreCompleto">Nombre Completo</string>
+    <string name="paypal_pago_num_tarj">Numero de tarjeta</string>
+    <string name="paypal_pago_fech_venc">Fecha de vencimiento</string>
+    <string name="paypal_pago_clave">Clave</string>
+
+    <string name="paypal_pago_pago_exitoso">Pago exitoso</string>
+    <string name="paypal_pago_pago_correc">Su pago ha sido realizado correctamente.</string>
+    <string name="paypal_pago_pago_farm">Farmacia Esp</string>
+    <string name="paypal_pago_pago_colonia">Col. Centro, Cuernavaca, Morelos, México</string>
+    <string name="paypal_pago_pago_tel">555-5555555</string>
+
+    <string name="titulo_paypal">$89.50</string>
+
+    <string name="ver_carrito">Ver Carrito</string>
+    <string name="action_cuenta">Cuenta</string>
+    <string name="action_informacion">Información</string>
+    <string name="action_ofertas">Ofertas</string>
+    <string name="action_cerrar">Cerrar sesión</string>
+    <string name="azitromicina">Azitromicina</string>
+    <string name="dexametasona">Dexametasona</string>
+    <string name="ivermectina">Ivermectina</string>
+    <string name="oseltamivir">Oseltamivir</string>
+    <string name="azitromicina_d">La azitromicina es uno de los medicamentos que se ha probado frente al coronavirus, pero sigue sin estar indicado para ello y tiene efectos secundarios.</string>
+    <string name="dexametasona_d">La dexametasona es un medicamento que pertenece al grupo de los corticoides o corticosterioides.</string>
+    <string name="ivermectina_d">La ivermectina es un medicamento antiparasitario con un amplio espectro de eficacia</string>
+    <string name="oseltamivir_d">Oseltamivir se utiliza para tratar algunos tipos de infección por influenza ("gripe") en adultos, niños y bebés (mayores de 2 semanas de edad) que han tenido ...</string>
+    <string name="img_azitromicina">drawable/azitromicina_img</string>
+    <string name="img_dexametasona">drawable/dexametasona</string>
+    <string name="img_ivermectina">drawable/ivermectina</string>
+    <string name="img_oseltamivir">drawable/oseltamivir</string>
+    <string name="medicamento">Medicamento</string>
+
 </resources>

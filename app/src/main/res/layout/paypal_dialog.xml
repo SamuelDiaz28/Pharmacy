@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutDialogContainer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="20dp"
+    android:padding="20dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutDialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/white_rectangle_background"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/titulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@string/paypal_pago_titulo"
+            android:textColor="@color/colorAccent"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ImageView
+            android:id="@+id/imgIcon"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:src="@android:drawable/ic_menu_close_clear_cancel"
+            app:layout_constraintBottom_toBottomOf="@id/titulo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/titulo"
+            app:tint="@color/colorAccent" />
+
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintBottom_toBottomOf="@id/titulo"/>
+
+        <ImageView
+            android:id="@+id/icPaypal"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_paypal"
+            app:layout_constraintBottom_toBottomOf="@id/divider2"
+            app:layout_constraintEnd_toEndOf="@+id/titulo"
+            app:layout_constraintHorizontal_bias="0.069"
+            app:layout_constraintStart_toStartOf="@+id/titulo"
+            app:layout_constraintTop_toTopOf="@id/divider2"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <EditText
+            android:id="@+id/telefono"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="left"
+            android:text="@string/paypal_pago_nombreCompleto"
+            android:textColor="@color/colorAccent"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@id/icPaypal"
+            tools:layout_editor_absoluteX="21dp" />
+        <EditText
+            android:id="@+id/precio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="left"
+            android:text="@string/paypal_pago_num_tarj"
+            android:textColor="@color/colorAccent"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@id/telefono"/>
+        <EditText
+            android:id="@+id/descripcion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="left"
+            android:text="@string/paypal_pago_fech_venc"
+            android:textColor="@color/colorAccent"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@id/precio"
+            />
+        <EditText
+            android:id="@+id/clave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="left"
+            android:text="@string/paypal_pago_clave"
+            android:textColor="@color/colorAccent"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@id/descripcion"
+            />
+
+        <Button
+            android:id="@+id/botoncCancelar"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/boton_azul"
+            android:gravity="center"
+            android:text="Cancelar"
+            android:textColor="@color/white"
+            app:backgroundTint="@color/color_amarillo_bajo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.075"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/clave" />
+
+        <Button
+            android:id="@+id/botonComprar"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/boton_azul"
+            android:gravity="center"
+            android:text="Procesar pago"
+            android:textColor="@color/white"
+            app:backgroundTint="@color/color_verde"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.924"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/clave" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
