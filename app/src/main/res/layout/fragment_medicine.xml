@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.MedicineFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/header_background"
+            android:padding="10dp">
+
+            <ImageView
+                android:id="@+id/imageMenu"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/ic_menu"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageCartShopping"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/ic_cart"
+                app:layout_constraintBottom_toBottomOf="@+id/imageMenu"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/imageMenu" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/white_rectangle_background"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageMenu">
+
+
+                <EditText
+                    android:id="@+id/edtSearch"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:hint="Search"
+                    android:imeOptions="actionSearch"
+                    android:inputType="text"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="15dp"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/search_icon_background"
+                    android:padding="6dp"
+                    android:src="@drawable/ic_search"
+                    app:tint="@color/colorPrimary" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:layout_below="@id/layoutHeader"
+            android:layout_marginTop="10dp"
+            android:clipToPadding="true"
+            android:scrollbars="vertical"
+            tools:listitem="@layout/list_medicines"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/recyclerView"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="15dp"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/trending_background"
+                android:padding="20dp">
+
+                <TextView
+                    android:id="@+id/txtTrending"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="8dp"
+                    android:paddingTop="2dp"
+                    android:paddingEnd="8dp"
+                    android:paddingBottom="2dp"
+                    android:text="TRENDING"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_favorite"
+                    app:layout_constraintBottom_toBottomOf="@id/txtTrending"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/txtTrending"
+                    app:tint="@color/white" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="3"
+                    android:text="Here set the announcement"
+                    android:textSize="20sp"
+                    app:layout_constraintTop_toBottomOf="@+id/txtTrending" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</FrameLayout>
