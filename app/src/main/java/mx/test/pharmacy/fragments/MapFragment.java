@@ -143,8 +143,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
         mMap.setMyLocationEnabled(true);
         mMap.getUiSettings().setMyLocationButtonEnabled(true);
 
-        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 0,  this);
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, this);
+
+        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0,  this);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,0,this);
 
         Location location = locationManager.getLastKnownLocation(locationManager.GPS_PROVIDER);
         if (location == null){

@@ -9,6 +9,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import androidx.fragment.app.FragmentManager;
@@ -19,6 +20,9 @@ import mx.test.pharmacy.R;
 
 public class ComunMethod{
 
+    //RadioButton
+    private static RadioButton r1,r2;
+    String slectedRadio="Envio a domicilio";
     View vista;
     FragmentManager fragment;
     private View.OnClickListener listener;
@@ -45,7 +49,7 @@ public class ComunMethod{
             @Override
             public void onClick(View v) {
                 alertDialog.dismiss();
-                showSuccessDialogPaypal((Activity) activity);
+                showEnvioDialog((Activity) activity);
             }
         });
 
@@ -64,7 +68,44 @@ public class ComunMethod{
 
     }
 
+    public static void showEnvioDialog(Activity activity){
+        //final String[] opciones={"Envio a domicilio","Recoger en tienda"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity, R.style.AlertDialogTheme);
+        View view = LayoutInflater.from(activity).inflate(
+                R.layout.info_envio,null
+        );
+        builder.setView(view);
 
+        r1= view.findViewById(R.id.radio1);
+        r2= view.findViewById(R.id.radio2);
+        ((TextView) view.findViewById(R.id.titulo)).setText("DELIVERY");
+
+        AlertDialog alertDialog = builder.create();
+
+
+        view.findViewById(R.id.botonContinuar).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+                showSuccessDialogPaypal((Activity) activity);
+            }
+        });
+
+        if (alertDialog.getWindow() != null) {
+            alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+        }
+        alertDialog.show();
+
+    }
+    private void validar(){
+        String cad= "Seleccionado: \n";
+        if(r1.isChecked() == true){
+            cad+="Opcion\n";
+        }
+        if(r2.isChecked()){
+            cad+="Opcion\n";
+        }
+    }
     public static void showSuccessDialogPaypal(Activity activity){
         AlertDialog.Builder builder = new AlertDialog.Builder(activity, R.style.AlertDialogTheme);
         View view = LayoutInflater.from(activity).inflate(
@@ -91,6 +132,12 @@ public class ComunMethod{
             }
         });
         view.findViewById(R.id.botoncCancelar).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
+        view.findViewById(R.id.imgIcon).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 alertDialog.dismiss();
