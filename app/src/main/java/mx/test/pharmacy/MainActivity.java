@@ -14,9 +14,7 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Toast;
 
-import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import mx.test.pharmacy.fragments.MapFragment;
@@ -70,8 +68,6 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportActionBar().hide();
 
-        getLocalizacion();
-
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
 
@@ -88,21 +84,6 @@ public class MainActivity extends AppCompatActivity {
         if(push)
             fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
-    }
-
-    private void getLocalizacion() {
-        int permiso = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION);
-        if(permiso == PackageManager.PERMISSION_DENIED){
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-        }
-        /* Fragmentos
-            if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions((Activity) getContext(),
-                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                    1
-            );
-        }*/
-
     }
 
 }

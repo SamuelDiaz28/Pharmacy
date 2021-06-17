@@ -3,6 +3,7 @@ package mx.test.pharmacy.adapters;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import java.util.stream.Collectors;
 
 import mx.test.pharmacy.R;
 import mx.test.pharmacy.models.ListElementMedicine;
+import mx.test.pharmacy.util.ComunMethod;
 
 public class ListMedicineAdapter extends RecyclerView.Adapter<ListMedicineAdapter.ViewHolder> {
 
@@ -26,6 +28,7 @@ public class ListMedicineAdapter extends RecyclerView.Adapter<ListMedicineAdapte
     private List<ListElementMedicine> mDataOriginal;
     private LayoutInflater mInflater;
     private Context context;
+    private ComunMethod comunMethod = new ComunMethod();
 
     public ListMedicineAdapter(List<ListElementMedicine> itemList, Context context){
          this.mInflater = LayoutInflater.from(context);
@@ -80,7 +83,7 @@ public class ListMedicineAdapter extends RecyclerView.Adapter<ListMedicineAdapte
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        ImageView iconImage;
+        ImageView iconImage, iconCart;
         TextView name, cost;
 
         ViewHolder(View itemView){
@@ -88,12 +91,21 @@ public class ListMedicineAdapter extends RecyclerView.Adapter<ListMedicineAdapte
             iconImage = itemView.findViewById(R.id.icImageView);
             name = itemView.findViewById(R.id.txtName);
             cost = itemView.findViewById(R.id.txtCost);
+            iconCart = itemView.findViewById(R.id.imgCart);
+
         }
 
         void bindData(final ListElementMedicine item){
-            iconImage.setColorFilter(Color.parseColor(item.getResourceImg()), PorterDuff.Mode.SRC_IN);
+            iconImage.setImageBitmap(comunMethod.getDecodedB64(item.getResourceImg()));
             name.setText(item.getName());
             cost.setText(item.getCost());
+
+            iconCart.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.i(">>Adapter<<", "Presiono el boton " + item.getName());
+                }
+            });
         }
     }
 }
