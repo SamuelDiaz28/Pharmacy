@@ -44,7 +44,7 @@ import retrofit2.Response;
 
 public class MedicineFragment extends Fragment implements View.OnClickListener {
 
-    List<ListElementMedicine> elementMedicines;
+    private List<ListElementMedicine> elementMedicines;
     private SearchView searchView = null;
     private SearchView.OnQueryTextListener queryTextListener;
     private ListMedicineAdapter listMedicineAdapter;
@@ -72,9 +72,9 @@ public class MedicineFragment extends Fragment implements View.OnClickListener {
         iconSearch.setOnClickListener(this);
 
         elementMedicines = new ArrayList<>();
-        elementMedicines.add(new ListElementMedicine("PARACETAMOL", "500 mg", "#0a9396"));
-        elementMedicines.add(new ListElementMedicine("ASPIRINA", "300 mg", "#bb3e03"));
-        elementMedicines.add(new ListElementMedicine("AMBROXOL", "250 mg", "#e9d8a6"));
+        elementMedicines.add(new ListElementMedicine("PARACETAMOL", "$200.00", "500 mg", "#0a9396"));
+        elementMedicines.add(new ListElementMedicine("ASPIRINA", "$100.00", "500 mg", "#bb3e03"));
+        elementMedicines.add(new ListElementMedicine("AMBROXOL", "$50.00", "250 mg", "#e9d8a6"));
 
         listMedicineAdapter = new ListMedicineAdapter(elementMedicines, getContext());
         LinearLayoutManager li = new LinearLayoutManager(getActivity());
@@ -111,19 +111,6 @@ public class MedicineFragment extends Fragment implements View.OnClickListener {
     private void getListMedicines(){
 
         MedicineService service = RetrofitRequest.create(MedicineService.class);
-        /*Call<List<Medicament>> response = service.getMedicines(edtSearch.getText().toString().trim());
-
-        response.enqueue(new Callback<List<Medicament>>() {
-            @Override
-            public void onResponse(Call<List<Medicament>> call, Response<List<Medicament>> response) {
-                Log.i(">>Response<<", "<<<<>>>>");
-            }
-
-            @Override
-            public void onFailure(Call<List<Medicament>> call, Throwable t) {
-
-            }
-        });*/
 
         Call<String> response = service.getMedicament(edtSearch.getText().toString().trim());
 
@@ -152,7 +139,7 @@ public class MedicineFragment extends Fragment implements View.OnClickListener {
                     elementMedicines.clear();
 
                     for (Medicament m : lista) {
-                        elementMedicines.add(new ListElementMedicine(m.getNombre(), m.getComposicion(), m.getImagen()));
+                        elementMedicines.add(new ListElementMedicine(m.getNombre(), m.getComposicion(), m.getPrecio(), m.getImagen()));
                     }
 
 
@@ -161,7 +148,6 @@ public class MedicineFragment extends Fragment implements View.OnClickListener {
 
                     iconSearch.setEnabled(true);
                     edtSearch.setEnabled(true);
-
 
                 }catch (JSONException e){
                     Log.i("TAG", e.getMessage());

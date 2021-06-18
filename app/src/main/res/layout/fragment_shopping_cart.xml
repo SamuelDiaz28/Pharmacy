@@ -3,15 +3,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.ShoppingCartFragment">
+    tools:context=".fragments.ShoppingCartFragment"
+    android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Shopping Cart"
-        android:textSize="48sp"
-        android:textStyle="bold"
-        android:gravity="center"/>
+        android:orientation="vertical">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="true"
+            android:scrollbars="vertical"
+            tools:listitem="@layout/list_medicines"
+            android:layout_alignParentTop="true"
+            android:layout_above="@id/btnPay"/>
+
+        <Button
+            android:id="@+id/btnPay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pagar"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:textColor="@color/white"
+            android:background="@drawable/custom_button"
+            android:layout_marginRight="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_alignParentBottom="true"/>
+
+    </RelativeLayout>
 
 </FrameLayout>

@@ -8,10 +8,12 @@ public class ListElementMedicine {
     public String cost;
     //public Bitmap resourceImg;
     public String resourceImg;
+    public String grammage;
 
-    public ListElementMedicine(String name, String cost, String resourceImg){
+    public ListElementMedicine(String name, String cost, String grammage, String resourceImg){
         this.name = name;
         this.cost = cost;
+        this.grammage = grammage;
         this.resourceImg = resourceImg;
     }
 
@@ -37,5 +39,13 @@ public class ListElementMedicine {
 
     public void setResourceImg(String resourceImg) {
         this.resourceImg = resourceImg;
+    }
+
+    public String getGrammage() {
+        return grammage;
+    }
+
+    public void setGrammage(String grammage) {
+        this.grammage = grammage;
     }
 }

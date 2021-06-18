@@ -14,6 +14,7 @@ public class Medicines implements Serializable {
     private int id;
     private String name;
     private String grammage;
+    private String cost;
     private String imgMedicine;
 
     public int getId() {
@@ -46,5 +47,13 @@ public class Medicines implements Serializable {
 
     public void setImgMedicine(String imgMedicine) {
         this.imgMedicine = imgMedicine;
+    }
+
+    public String getCost() {
+        return cost;
+    }
+
+    public void setCost(String cost) {
+        this.cost = cost;
     }
 }
