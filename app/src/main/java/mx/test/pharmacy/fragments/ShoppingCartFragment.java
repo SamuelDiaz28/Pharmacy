@@ -19,6 +19,7 @@ import java.util.List;
 
 import mx.test.pharmacy.R;
 import mx.test.pharmacy.adapters.ListMedicineAdapter;
+import mx.test.pharmacy.adapters.ListShoppingCartAdapter;
 import mx.test.pharmacy.models.ListElementMedicine;
 import mx.test.pharmacy.models.Medicament;
 import mx.test.pharmacy.roomData.AppDatabase;
@@ -32,7 +33,7 @@ public class ShoppingCartFragment extends Fragment {
 
     private List<ListElementMedicine> elementMedicines;
     private SearchView searchView = null;
-    private ListMedicineAdapter listMedicineAdapter;
+    private ListShoppingCartAdapter listShoppingCartAdapter;
     private RecyclerView recyclerView;
 
 
@@ -55,18 +56,20 @@ public class ShoppingCartFragment extends Fragment {
 
         recyclerView = root.findViewById(R.id.recyclerView);
 
+        new GetData().execute();
+
         return root;
     }
 
-    private void showList(){
-        listMedicineAdapter = new ListMedicineAdapter(elementMedicines, getContext());
+    private void showList() {
+        listShoppingCartAdapter = new ListShoppingCartAdapter(elementMedicines, getContext());
         LinearLayoutManager li = new LinearLayoutManager(getActivity());
         li.setOrientation(LinearLayoutManager.VERTICAL);
 
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(li);
-        recyclerView.setAdapter(listMedicineAdapter);
+        recyclerView.setAdapter(listShoppingCartAdapter);
     }
 
     public class GetData extends AsyncTask<Void, Void, Boolean> {
@@ -77,11 +80,15 @@ public class ShoppingCartFragment extends Fragment {
             try {
                 List<Medicines> medicinesList = AppDatabase.getInstance(getActivity().getApplicationContext()).medicinesDao().get();
 
-                for (Medicines medicine : medicinesList) {
-                    elementMedicines.add(new ListElementMedicine(medicine.getName(), medicine.getCost(), medicine.getGrammage(), medicine.getImgMedicine()));
-                }
+                if (medicinesList.size() != 0){
+                    for (Medicines medicine : medicinesList) {
+                        elementMedicines = new ArrayList<>();
+                        elementMedicines.add(new ListElementMedicine(medicine.getName(), medicine.getCost(), medicine.getGrammage(), medicine.getImgMedicine()));
+                    }
+                    return true;
+                } else
+                    return false;
 
-                return true;
             } catch (Exception e) {
 
                 Log.e("ObverseIdentifyFragment", "Error al almacenar reporte", e);
@@ -92,7 +99,7 @@ public class ShoppingCartFragment extends Fragment {
 
         @Override
         protected void onPostExecute(Boolean ok) {
-            Toast.makeText(getActivity(), ok ? "Datos almacenados" : "Ocurrio un error al intentar almacenar los datos", Toast.LENGTH_LONG).show();
+            //Toast.makeText(getActivity(), ok ? "Datos almacenados" : "Ocurrio un error al intentar almacenar los datos", Toast.LENGTH_LONG).show();
             if (ok) {
                 showList();
             }

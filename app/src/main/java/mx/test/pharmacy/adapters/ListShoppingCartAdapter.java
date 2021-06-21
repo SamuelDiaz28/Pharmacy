@@ -1,6 +1,7 @@
 package mx.test.pharmacy.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,6 +66,13 @@ public class ListShoppingCartAdapter extends RecyclerView.Adapter<ListShoppingCa
             iconImage.setImageBitmap(comunMethod.getDecodedB64(item.getResourceImg()));
             name.setText(item.getName());
             cost.setText(item.getCost());
+
+            iconCart.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
         }
 
 

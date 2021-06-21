@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -24,6 +25,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -51,6 +55,7 @@ public class MedicineFragment extends Fragment implements View.OnClickListener {
     private RecyclerView recyclerView;
 
     private ImageView iconSearch;
+    private ImageView iconScan;
     private EditText edtSearch;
 
     private Dialog dialog;
@@ -67,9 +72,11 @@ public class MedicineFragment extends Fragment implements View.OnClickListener {
         View root = inflater.inflate(R.layout.fragment_medicine, container, false);
 
         iconSearch = root.findViewById(R.id.imgSearch);
+        iconScan = root.findViewById(R.id.imgScan);
         edtSearch = root.findViewById(R.id.edtSearch);
 
         iconSearch.setOnClickListener(this);
+        iconScan.setOnClickListener(this);
 
         elementMedicines = new ArrayList<>();
         elementMedicines.add(new ListElementMedicine("PARACETAMOL", "$200.00", "500 mg", "#0a9396"));
@@ -105,6 +112,30 @@ public class MedicineFragment extends Fragment implements View.OnClickListener {
 
                 break;
 
+            case R.id.imgScan:
+                IntentIntegrator integrator = new IntentIntegrator(getActivity());
+                integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
+                integrator.setPrompt("Lector - CDP");
+                integrator.setCameraId(0);
+                integrator.setBeepEnabled(true);
+                integrator.setBarcodeImageEnabled(true);
+                integrator.initiateScan();
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+
+        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+
+        if (result != null){
+            if (result.getContents() == null){
+                Toast.makeText(getActivity().getApplicationContext(), "Escaneo cancelado", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getActivity().getApplicationContext(), result.getContents(), Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            super.onActivityResult(requestCode, resultCode, data);
         }
     }
 
@@ -139,7 +170,7 @@ public class MedicineFragment extends Fragment implements View.OnClickListener {
                     elementMedicines.clear();
 
                     for (Medicament m : lista) {
-                        elementMedicines.add(new ListElementMedicine(m.getNombre(), m.getComposicion(), m.getPrecio(), m.getImagen()));
+                        elementMedicines.add(new ListElementMedicine(m.getNombre(),  m.getPrecio(), m.getComposicion(), m.getImagen()));
                     }
 
 

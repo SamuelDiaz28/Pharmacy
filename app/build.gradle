@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "mx.test.pharmacy"
-        minSdkVersion 16
+        minSdkVersion 24
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -47,5 +47,7 @@ dependencies {
 
     implementation 'com.google.android.gms:play-services-maps:17.0.1'
     implementation 'com.google.android.gms:play-services-location:11.8.0'
+
+    implementation 'com.journeyapps:zxing-android-embedded:4.1.0'
 
 }

@@ -76,6 +76,15 @@
                     android:src="@drawable/ic_search"
                     app:tint="@color/colorPrimary" />
 
+                <ImageView
+                    android:id="@+id/imgScan"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/search_icon_background"
+                    android:padding="6dp"
+                    android:src="@drawable/ic_barcode"
+                    app:tint="@color/colorPrimary" />
+
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -38,9 +38,6 @@ public class ListMedicineAdapter extends RecyclerView.Adapter<ListMedicineAdapte
         this.mInflater = LayoutInflater.from(context);
         this.context = context;
         this.mData = itemList;
-
-        mDataOriginal = new ArrayList<>();
-        mDataOriginal.addAll(mData);
     }
 
     @Override
@@ -80,7 +77,7 @@ public class ListMedicineAdapter extends RecyclerView.Adapter<ListMedicineAdapte
         void bindData(final ListElementMedicine item) {
             iconImage.setImageBitmap(comunMethod.getDecodedB64(item.getResourceImg()));
             name.setText(item.getName());
-            cost.setText(item.getCost());
+            cost.setText(item.getGrammage());
 
             iconCart.setOnClickListener(new View.OnClickListener() {
                 @Override
