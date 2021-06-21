@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:clipToPadding="true"
             android:scrollbars="vertical"
-            tools:listitem="@layout/list_medicines"
+            tools:listitem="@layout/list_medicines_cart"
             android:layout_alignParentTop="true"
             android:layout_above="@id/btnPay"/>
 
@@ -25,7 +25,7 @@
             android:id="@+id/btnPay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Pagar"
+            android:text="Ver Farmacias"
             android:textStyle="bold"
             android:textSize="20dp"
             android:textColor="@color/white"

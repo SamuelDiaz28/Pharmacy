@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -29,12 +30,13 @@ import mx.test.pharmacy.roomData.entities.Medicines;
  * A simple {@link Fragment} subclass.
  * create an instance of this fragment.
  */
-public class ShoppingCartFragment extends Fragment {
+public class ShoppingCartFragment extends Fragment implements View.OnClickListener {
 
     private List<ListElementMedicine> elementMedicines;
     private SearchView searchView = null;
     private ListShoppingCartAdapter listShoppingCartAdapter;
     private RecyclerView recyclerView;
+    private Button btnPharmacy;
 
 
     public ShoppingCartFragment() {
@@ -55,6 +57,11 @@ public class ShoppingCartFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_shopping_cart, container, false);
 
         recyclerView = root.findViewById(R.id.recyclerView);
+        btnPharmacy = root.findViewById(R.id.btnPay);
+
+        elementMedicines = new ArrayList<>();
+
+        btnPharmacy.setOnClickListener(this);
 
         new GetData().execute();
 
@@ -72,6 +79,15 @@ public class ShoppingCartFragment extends Fragment {
         recyclerView.setAdapter(listShoppingCartAdapter);
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.btnPay:
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frame_layout, new MapFragment()).commit();
+        }
+    }
+
     public class GetData extends AsyncTask<Void, Void, Boolean> {
 
         @Override
@@ -82,7 +98,6 @@ public class ShoppingCartFragment extends Fragment {
 
                 if (medicinesList.size() != 0){
                     for (Medicines medicine : medicinesList) {
-                        elementMedicines = new ArrayList<>();
                         elementMedicines.add(new ListElementMedicine(medicine.getName(), medicine.getCost(), medicine.getGrammage(), medicine.getImgMedicine()));
                     }
                     return true;
@@ -93,7 +108,6 @@ public class ShoppingCartFragment extends Fragment {
 
                 Log.e("ObverseIdentifyFragment", "Error al almacenar reporte", e);
                 return false;
-
             }
         }
 

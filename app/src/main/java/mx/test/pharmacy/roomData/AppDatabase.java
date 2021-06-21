@@ -12,7 +12,7 @@ import mx.test.pharmacy.roomData.dao.MedicinesDao;
 import mx.test.pharmacy.roomData.entities.Medicines;
 
 @TypeConverters(Converter.class)
-@Database(version = 1, exportSchema = false, entities = {Medicines.class})
+@Database(version = 2, exportSchema = false, entities = {Medicines.class})
 public abstract class AppDatabase extends RoomDatabase {
 
     private static final String DB_NAME = "PHARMACY_DB";

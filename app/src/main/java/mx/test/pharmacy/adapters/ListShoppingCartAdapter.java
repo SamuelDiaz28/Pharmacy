@@ -1,6 +1,7 @@
 package mx.test.pharmacy.adapters;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,8 @@ import java.util.List;
 
 import mx.test.pharmacy.R;
 import mx.test.pharmacy.models.ListElementMedicine;
+import mx.test.pharmacy.roomData.AppDatabase;
+import mx.test.pharmacy.roomData.entities.Medicines;
 import mx.test.pharmacy.util.ComunMethod;
 
 public class ListShoppingCartAdapter extends RecyclerView.Adapter<ListShoppingCartAdapter.ViewHolder> {
@@ -36,7 +39,7 @@ public class ListShoppingCartAdapter extends RecyclerView.Adapter<ListShoppingCa
 
     @Override
     public ListShoppingCartAdapter.ViewHolder onCreateViewHolder(ViewGroup paren, int viewType){
-        View view = mInflater.inflate(R.layout.list_medicines, null);
+        View view = mInflater.inflate(R.layout.list_medicines_cart, null);
         return new ListShoppingCartAdapter.ViewHolder(view);
     }
 
@@ -65,7 +68,7 @@ public class ListShoppingCartAdapter extends RecyclerView.Adapter<ListShoppingCa
         void bindData(final ListElementMedicine item){
             iconImage.setImageBitmap(comunMethod.getDecodedB64(item.getResourceImg()));
             name.setText(item.getName());
-            cost.setText(item.getCost());
+            cost.setText("$" + item.getCost());
 
             iconCart.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -74,7 +77,6 @@ public class ListShoppingCartAdapter extends RecyclerView.Adapter<ListShoppingCa
                 }
             });
         }
-
-
     }
+
 }

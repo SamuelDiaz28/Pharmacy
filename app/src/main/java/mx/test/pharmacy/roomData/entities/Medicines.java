@@ -10,8 +10,7 @@ import java.io.Serializable;
 @Entity(tableName = "medicines")
 public class Medicines implements Serializable {
 
-    @PrimaryKey
-    private int id;
+    @PrimaryKey(autoGenerate = true) private int id;
     private String name;
     private String grammage;
     private String cost;

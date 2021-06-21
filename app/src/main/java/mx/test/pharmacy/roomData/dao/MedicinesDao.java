@@ -14,10 +14,10 @@ import mx.test.pharmacy.roomData.entities.Medicines;
 @Dao
 public interface MedicinesDao {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert
     void insert(Medicines userInfo);
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert
     void insert(List<Medicines> medicines);
 
     @Update
