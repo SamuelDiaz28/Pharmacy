@@ -45,6 +45,8 @@
 
     <string name="titulo_paypal">$89.50</string>
 
+    <string name="titulo_bootomsheet">Farmacias cercanas</string>
+
     <string name="ver_carrito">Ver Carrito</string>
     <string name="action_cuenta">Cuenta</string>
     <string name="action_informacion">Información</string>

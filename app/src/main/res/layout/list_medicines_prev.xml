@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/cardView"
+    android:animateLayoutChanges="true"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="4dp"
+    app:cardUseCompatPadding="true">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+        <RelativeLayout
+            android:id="@+id/rlative1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="6dp">
+
+            <LinearLayout
+                android:id="@+id/layoutTitulo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical"
+                android:layout_marginLeft="4dp"
+                >
+                <TextView
+                    android:id="@+id/txtName1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:gravity="center"
+                    android:text="Farmacia"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:text="Total "
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:gravity="left"/>
+
+                <TextView
+                    android:id="@+id/txtCost"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:gravity="left"
+                    android:text="Precio"
+                    android:textColor="@color/black"
+                    android:textSize="13sp"
+                    android:textStyle="italic" />
+                <TextView
+                    android:id="@+id/txtDistancia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:gravity="left"
+                    android:text="Distancia"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtKlm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:gravity="center"
+                    android:text="Kilometros"
+                    android:textColor="@color/black"
+                    android:textSize="13sp"
+                    android:textStyle="italic" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/lyout1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="1dp"
+                android:orientation="vertical"
+                android:layout_marginLeft="4dp"
+                android:layout_toEndOf="@+id/layoutTitulo"
+                android:layout_toRightOf="@+id/layoutTitulo">
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lyout2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="1dp"
+                android:orientation="vertical"
+                android:layout_marginLeft="4dp"
+                android:layout_toEndOf="@id/lyout1"
+                android:layout_toRightOf="@id/lyout1">
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="1dp"
+                android:layout_marginLeft="1dp"
+                android:layout_marginTop="2dp"
+                android:layout_toEndOf="@id/lyout2"
+                android:layout_toRightOf="@id/lyout2"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/shetbotompagar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Seleccionar"
+                    android:textStyle="bold"
+                    android:textSize="12dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"/>
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

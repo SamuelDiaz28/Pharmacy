@@ -7,10 +7,21 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <com.google.android.gms.maps.MapView
-        android:id="@+id/mapf"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
+    <androidx.drawerlayout.widget.DrawerLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
+        <!-- Framelayout to display Fragments -->
+        <FrameLayout
+            android:id="@+id/frame_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/mapf"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        </FrameLayout>
+    </androidx.drawerlayout.widget.DrawerLayout>
+
 
 </FrameLayout>

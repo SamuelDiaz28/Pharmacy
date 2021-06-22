@@ -11,17 +11,22 @@ import android.graphics.drawable.BitmapDrawable;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -36,13 +41,24 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import mx.test.pharmacy.R;
+import mx.test.pharmacy.adapters.ListFarmaciaPrecDistAdapter;
+import mx.test.pharmacy.adapters.ListMedicineAdapter;
+import mx.test.pharmacy.models.ListElementMedicine;
+import mx.test.pharmacy.models.ListFarmaciaPrecDist;
+import mx.test.pharmacy.roomData.AppDatabase;
+import mx.test.pharmacy.roomData.entities.Medicines;
 import mx.test.pharmacy.util.ComunMethod;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link MapFragment#newInstance} factory method to
@@ -50,7 +66,13 @@ import mx.test.pharmacy.util.ComunMethod;
  */
 public class MapFragment extends Fragment implements OnMapReadyCallback, View.OnClickListener , LocationListener {
 
+    //
+    private RecyclerView recyclerView;
+    private List<ListFarmaciaPrecDist> elementMedicines;
+    private ListFarmaciaPrecDistAdapter listFarmaciaPrecDistAdapter;
+
     //MAPAS
+    private Marker marker1,marker2,marker3;
     private View rootView;
     private MapView mapView;
     private GoogleMap mMap;
@@ -100,6 +122,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
@@ -108,6 +131,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
         // Inflate the layout for this fragment
 
         rootView = inflater.inflate(R.layout.fragment_map, container, false);
+        elementMedicines = new ArrayList<>();
+        cargarFarmacias();
         return rootView;
     }
 
@@ -121,6 +146,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
             mapView.onResume();
             mapView.getMapAsync(this);
         }
+
     }
 
     @Override
@@ -128,6 +154,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
         super.onResume();
 
     }
+
 
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
@@ -144,8 +171,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
         mMap.getUiSettings().setMyLocationButtonEnabled(true);
 
 
-        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0,  this);
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,0,this);
+        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1, 0,  this);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,1,0,this);
 
         Location location = locationManager.getLastKnownLocation(locationManager.GPS_PROVIDER);
         if (location == null){
@@ -153,6 +180,16 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
         }
         currentLocation = location;
 
+        while (currentLocation == null){
+            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1, 0,  this);
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,1,0,this);
+
+            location = locationManager.getLastKnownLocation(locationManager.GPS_PROVIDER);
+            if (location == null){
+                location = locationManager.getLastKnownLocation(locationManager.NETWORK_PROVIDER);
+            }
+            currentLocation = location;
+        }
         zoomToLocation(currentLocation);
 
         int height = 100;
@@ -218,16 +255,46 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
                 .title("Farmacia San-Pa")
                 .snippet("Precio: $80.00 "+"\n"+"Tiempo de Entrega: 40 min")
                 .icon(BitmapDescriptorFactory.fromBitmap(smallMarker2)));
-        mMap.addMarker(new MarkerOptions()
+                //.showInfoWindow();
+
+        Marker farmaWalwart = mMap.addMarker(new MarkerOptions()
                 .position(farma3)
                 .title("Farmacia Walwart ")
                 .snippet("Precio: $110.00 "+"\n"+"Tiempo de Entrega: 15 min")
-                .icon(BitmapDescriptorFactory.fromBitmap(smallMarker3)));
-        mMap.addMarker(new MarkerOptions()
+                .icon(BitmapDescriptorFactory.fromBitmap(smallMarker3))
+        );
+        /*mMap.addMarker(new MarkerOptions()
+                .position(farma3)
+                .title("Farmacia Walwart ")
+                .snippet("Precio: $110.00 "+"\n"+"Tiempo de Entrega: 15 min")
+                .icon(BitmapDescriptorFactory.fromBitmap(smallMarker3)))
+                .showInfoWindow();*/
+        Marker farmaGua = mMap.addMarker(new MarkerOptions()
                 .position(farma4)
                 .title("Farmacia Gua ")
                 .snippet("Precio: $60.00 "+"\n"+"Tiempo de Entrega: 55 min")
-                .icon(BitmapDescriptorFactory.fromBitmap(smallMarker4)));
+                .icon(BitmapDescriptorFactory.fromBitmap(smallMarker4))
+                .infoWindowAnchor(0.5f, 0.5f));
+        /*mMap.addMarker(new MarkerOptions()
+                .position(farma4)
+                .title("Farmacia Gua ")
+                .snippet("Precio: $60.00 "+"\n"+"Tiempo de Entrega: 55 min")
+                .icon(BitmapDescriptorFactory.fromBitmap(smallMarker4)));*/
+
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(@NonNull Marker marker) {
+
+                //Mandamos a traer el boottomSheet
+                toggleBottomSheet();
+                if (marker.isInfoWindowShown()) {
+                    marker.hideInfoWindow();
+                } else {
+                    marker.showInfoWindow();
+                }
+                return true;
+            }
+        });
 
 
         mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
@@ -268,11 +335,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
                 ComunMethod.showSuccessDialog(titulo,telefono,precio,descripcion, getActivity());
 
             }
+
         });
     }
-
-
-
     private void zoomToLocation(Location location){
         camara = new CameraPosition.Builder()
                 .target(new LatLng(location.getLatitude(), location.getLongitude()))
@@ -293,5 +358,76 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
 
     }
 
+    public void toggleBottomSheet(){
 
+        View view = getLayoutInflater().inflate(R.layout.fragment_bottom_sheet, null);
+        recyclerView = view.findViewById(R.id.recyclerView_bootomshet);
+
+        BottomSheetDialog dialog = new BottomSheetDialog(getActivity());
+        Button btnPago = view.findViewById(R.id.shetbotompagar);
+
+
+       /* btnPago.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //ComunMethod.showSuccessDialog(titulo,telefono,precio,descripcion, getActivity());
+            }
+        });*/
+
+        showList();
+        dialog.setContentView(view);
+        dialog.show();
+    }
+
+    private void showList(){
+        listFarmaciaPrecDistAdapter = new ListFarmaciaPrecDistAdapter(elementMedicines, getContext());
+        LinearLayoutManager li = new LinearLayoutManager(getContext());
+        li.setOrientation(LinearLayoutManager.VERTICAL);
+
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(li);
+        recyclerView.setAdapter(listFarmaciaPrecDistAdapter);
+    }
+
+    private void cargarFarmacias(){
+        elementMedicines.add(new ListFarmaciaPrecDist("Farmacia Ahora", "180.00", "1km"));
+        elementMedicines.add(new ListFarmaciaPrecDist("Framacia Esp", "166.30", "2km"));
+        elementMedicines.add(new ListFarmaciaPrecDist("Framacia San-Pa", "150.10", "1.8km"));
+        elementMedicines.add(new ListFarmaciaPrecDist("Framacia Walwart", "132.50", "2.1km"));
+        elementMedicines.add(new ListFarmaciaPrecDist("Framacia Gua", "100.99", "3km"));
+
+    }
+
+    public class GetData extends AsyncTask<Void, Void, Boolean> {
+
+        @Override
+        protected Boolean doInBackground(Void... voids) {
+
+            try {
+                /*List<Medicines> medicinesList = AppDatabase.getInstance(getActivity().getApplicationContext()).medicinesDao().get();
+
+                for (Medicines medicine : medicinesList) {
+
+                    elementMedicines.add(new ListFarmaciaPrecDist(medicine.getName(), medicine.getCost(), medicine.getGrammage(), medicine.getImgMedicine()));
+                }*/
+
+
+                return true;
+            } catch (Exception e) {
+
+                Log.e("ObverseIdentifyFragment", "Error al almacenar reporte", e);
+                return false;
+
+            }
+        }
+
+        @Override
+        protected void onPostExecute(Boolean ok) {
+            Toast.makeText(getActivity(), ok ? "Datos almacenados" : "Ocurrio un error al intentar almacenar los datos", Toast.LENGTH_LONG).show();
+            if (ok) {
+                showList();
+            }
+
+        }
+    }
 }
