@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutDialogContainer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="1dp"
+    android:padding="1dp"
+    android:background="@drawable/white_rectangle_background">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutDialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/white_rectangle_background"
+        android:clipToPadding="true"
+        android:scrollbars="vertical"
+        tools:listitem="@layout/list_medicines_prev"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/titulo_farmacia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/header_background"
+            android:padding="10dp"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:text="@string/titulo_bootomsheet"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <ImageView
+            android:id="@+id/imgIcon"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintBottom_toBottomOf="@id/titulo_farmacia"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/titulo_farmacia"
+            android:layout_marginRight="10dp"
+            android:src="@android:drawable/ic_menu_close_clear_cancel"
+            app:tint="@color/white"
+            android:visibility="gone"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_bootomshet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:clipToPadding="true"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@id/titulo_farmacia"/>
+
+
+        <!--<TextView
+            android:id="@+id/txtSubtotal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="40dp"
+            android:textColor="@color/colorAccent"
+            android:textSize="16sp"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/recyclerView_bootomshet"/>
+        <TextView
+            android:id="@+id/txtTotal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="40dp"
+            android:textColor="@color/colorAccent"
+            android:textSize="16sp"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/txtSubtotal"/>-->
+        <!--<Button
+            android:id="@+id/botonComprar"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/boton_azul"
+            android:gravity="center"
+            android:text="Comprar"
+            android:textColor="@color/white"
+            app:backgroundTint="@color/color_azul"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtTotal" />-->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

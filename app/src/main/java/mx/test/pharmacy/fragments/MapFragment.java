@@ -256,14 +256,14 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
         MarkerOptions marcador1 = new MarkerOptions()
                 .position(farma)
                 .title("Farmacia Ahora")
-                .snippet("Precio: $100.00 "+"\n"+" Tiempo de Entrega: 30 min")
+                .snippet("Distancia: 1 km "+"\n"+" Tiempo de Entrega: 20 min")
                 .icon(BitmapDescriptorFactory.fromBitmap(smallMarker));
 
         mMap.addMarker(marcador1);
         MarkerOptions marcador2 = new MarkerOptions()
                 .position(farma1)
                 .title("Farmacia Esp")
-                .snippet("Precio: $99.00 "+"\n"+"Tiempo de Entrega: 25 min")
+                .snippet("Distancia: 2 km "+"\n"+"Tiempo de Entrega: 35 min")
                 .icon(BitmapDescriptorFactory.fromBitmap(smallMarker1));
         mMap.addMarker(marcador2);
         /*mMap.addMarker(new MarkerOptions()
@@ -274,14 +274,14 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
         mMap.addMarker(new MarkerOptions()
                 .position(farma2)
                 .title("Farmacia San-Pa")
-                .snippet("Precio: $80.00 "+"\n"+"Tiempo de Entrega: 40 min")
+                .snippet("Distancia: 1.8 km"+"\n"+"Tiempo de Entrega: 30 min")
                 .icon(BitmapDescriptorFactory.fromBitmap(smallMarker2)));
                 //.showInfoWindow();
 
         Marker farmaWalwart = mMap.addMarker(new MarkerOptions()
                 .position(farma3)
                 .title("Farmacia Walwart")
-                .snippet("Precio: $110.00 "+"\n"+"Tiempo de Entrega: 15 min")
+                .snippet("Distancia: 2.1 km"+"\n"+"Tiempo de Entrega: 37 min")
                 .icon(BitmapDescriptorFactory.fromBitmap(smallMarker3))
         );
         /*mMap.addMarker(new MarkerOptions()
@@ -293,7 +293,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
         Marker farmaGua = mMap.addMarker(new MarkerOptions()
                 .position(farma4)
                 .title("Farmacia Gua")
-                .snippet("Precio: $60.00 "+"\n"+"Tiempo de Entrega: 55 min")
+                .snippet("Distancia: 3 km "+"\n"+"Tiempo de Entrega: 55 min")
                 .icon(BitmapDescriptorFactory.fromBitmap(smallMarker4))
                 .infoWindowAnchor(0.5f, 0.5f));
         /*mMap.addMarker(new MarkerOptions()
@@ -307,7 +307,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
             public boolean onMarkerClick(@NonNull Marker marker) {
 
                 //Mandamos a traer el boottomSheet
-                toggleBottomSheet();
+                //toggleBottomSheet();
                 if (marker.isInfoWindowShown()) {
                     marker.hideInfoWindow();
                 } else {
