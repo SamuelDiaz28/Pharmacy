@@ -69,7 +69,7 @@ import mx.test.pharmacy.util.ComunMethod;
  */
 public class MapFragment extends Fragment implements OnMapReadyCallback, View.OnClickListener , LocationListener {
 
-    //
+    //LISTA MEDICAMENTOS Y FARMACIAS
     private List<ListMedicamentoShow> listMedicamentoShows;
     private List<ListCompraUsuario> listCompraUsuarios;
     private RecyclerView recyclerView;
@@ -136,11 +136,24 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
         // Inflate the layout for this fragment
 
         rootView = inflater.inflate(R.layout.fragment_map, container, false);
+
+        fab = rootView.findViewById(R.id.fload);
+
         elementMedicines = new ArrayList<>();
         listCompraUsuarios = new ArrayList<>();
         listMedicamentoShows = new ArrayList<>();
         cargarFarmacias();
         cargarListaUsuario();
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(getContext(), "Atras " , Toast.LENGTH_SHORT).show();
+                toggleBottomSheet();
+
+            }
+        });
+
         return rootView;
     }
 
