@@ -32,111 +32,107 @@
                 android:layout_marginStart="1dp"
                 android:layout_marginTop="5dp"
                 android:orientation="vertical"
-                android:layout_marginLeft="4dp"
-                >
+                android:layout_marginLeft="4dp">
                 <TextView
-                    android:id="@+id/txtName1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="2dp"
-                    android:gravity="center"
-                    android:text="Farmacia"
-                    android:textColor="@color/black"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txtName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="2dp"
-                    android:text="Total "
-                    android:textColor="@color/black"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:gravity="left"/>
-
-                <TextView
-                    android:id="@+id/txtCost"
+                    android:id="@+id/txtNomMed"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="2dp"
                     android:gravity="left"
-                    android:text="Precio"
+                    android:text="Pirquet"
                     android:textColor="@color/black"
-                    android:textSize="13sp"
-                    android:textStyle="italic" />
+                    android:textSize="8sp"
+                    android:textStyle="bold" />
                 <TextView
-                    android:id="@+id/txtDistancia"
+                    android:id="@+id/txtingrdntActv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="2dp"
                     android:gravity="left"
-                    android:text="Distancia"
+                    android:text="Fexofeni"
                     android:textColor="@color/black"
-                    android:textSize="14sp"
+                    android:textSize="8sp"
                     android:textStyle="bold" />
-
                 <TextView
-                    android:id="@+id/txtKlm"
+                    android:id="@+id/txtComposicion"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="2dp"
-                    android:gravity="center"
-                    android:text="Kilometros"
+                    android:gravity="left"
+                    android:text="180 mg"
                     android:textColor="@color/black"
-                    android:textSize="13sp"
-                    android:textStyle="italic" />
+                    android:textSize="8sp"
+                    android:textStyle="bold" />
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/lyout1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
-                android:layout_marginTop="1dp"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="5dp"
                 android:orientation="vertical"
                 android:layout_marginLeft="4dp"
                 android:layout_toEndOf="@+id/layoutTitulo"
                 android:layout_toRightOf="@+id/layoutTitulo">
 
+                <TextView
+                    android:id="@+id/txtformaFarmaceutica"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:text="Tabletas"
+                    android:textColor="@color/black"
+                    android:textSize="8sp"
+                    android:textStyle="bold"
+                    android:gravity="left"/>
 
+                <TextView
+                    android:id="@+id/txtCategoria"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:gravity="left"
+                    android:text="Adulto"
+                    android:textColor="@color/black"
+                    android:textSize="8sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/txtPresentacion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:gravity="left"
+                    android:text="10 Tabletas(1 caja)"
+                    android:textColor="@color/black"
+                    android:textSize="8sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/lyout2"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
-                android:layout_marginTop="1dp"
+                android:layout_marginTop="10dp"
                 android:orientation="vertical"
                 android:layout_marginLeft="4dp"
                 android:layout_toEndOf="@id/lyout1"
                 android:layout_toRightOf="@id/lyout1">
 
 
+                <TextView
+                    android:id="@+id/txtPrecio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:gravity="center"
+                    android:text="$209.50"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
             </LinearLayout>
 
-            <!--<LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_marginStart="1dp"
-                android:layout_marginLeft="1dp"
-                android:layout_marginTop="2dp"
-                android:layout_toEndOf="@id/lyout2"
-                android:layout_toRightOf="@id/lyout2"
-                android:orientation="vertical">
-
-                <Button
-                    android:id="@+id/shetbotompagar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Seleccionar"
-                    android:textStyle="bold"
-                    android:textSize="12dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginLeft="10dp"/>
-            </LinearLayout>-->
 
         </RelativeLayout>
 

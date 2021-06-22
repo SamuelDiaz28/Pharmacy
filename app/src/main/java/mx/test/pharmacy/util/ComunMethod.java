@@ -13,10 +13,22 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.io.ByteArrayOutputStream;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
 
 import mx.test.pharmacy.R;
+import mx.test.pharmacy.adapters.ListFarmaciaPrecDistAdapter;
+import mx.test.pharmacy.adapters.ListProductosCompraAdapter;
+import mx.test.pharmacy.models.ListCompraUsuario;
+import mx.test.pharmacy.models.ListFarmaciaPrecDist;
+import mx.test.pharmacy.models.ListMedicamentoShow;
 
 public class ComunMethod{
 
@@ -27,6 +39,172 @@ public class ComunMethod{
     FragmentManager fragment;
     private View.OnClickListener listener;
     public ComunMethod (){
+
+    }
+
+    public static void showSuccessDialogShow(String id, List<ListCompraUsuario> listCompraUsuarios, Context activity){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity, R.style.AlertDialogTheme);
+        View view = LayoutInflater.from(activity).inflate(R.layout.info_layout_precompra,null);
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerView_dialog);
+
+        List<ListMedicamentoShow> listMedicamentoShows = new ArrayList();
+
+        switch (id){
+            case "Farmacia Ahora":
+
+                for (ListCompraUsuario comUsuario : listCompraUsuarios){
+
+                    if (comUsuario.farmacia=="Farmacia Ahora"){
+
+                        builder.setView(view);
+                        ((TextView) view.findViewById(R.id.titulo)).setText(comUsuario.farmacia);
+                        ((TextView) view.findViewById(R.id.telefono)).setText(comUsuario.telefono);
+                        ((TextView) view.findViewById(R.id.direccion)).setText(comUsuario.direccion);
+                        ((TextView) view.findViewById(R.id.subtotal)).setText(comUsuario.subtotal);
+                        ((TextView) view.findViewById(R.id.total)).setText(comUsuario.total);
+
+                        listMedicamentoShows = comUsuario.listMedicamentoShows;
+                        ListProductosCompraAdapter listProductosCompraAdapter = new ListProductosCompraAdapter(listMedicamentoShows,activity);
+                        LinearLayoutManager li = new LinearLayoutManager(activity.getApplicationContext());
+                        li.setOrientation(LinearLayoutManager.VERTICAL);
+
+                        recyclerView.setHasFixedSize(true);
+                        recyclerView.setLayoutManager(li);
+                        recyclerView.setAdapter(listProductosCompraAdapter);
+
+
+                    }
+                }
+                break;
+
+            case "Farmacia Esp":
+                for (ListCompraUsuario comUsuario : listCompraUsuarios){
+
+                    if (comUsuario.farmacia=="Farmacia Esp"){
+
+                        builder.setView(view);
+                        ((TextView) view.findViewById(R.id.titulo)).setText(comUsuario.farmacia);
+                        ((TextView) view.findViewById(R.id.telefono)).setText(comUsuario.telefono);
+                        ((TextView) view.findViewById(R.id.direccion)).setText(comUsuario.direccion);
+                        ((TextView) view.findViewById(R.id.subtotal)).setText(comUsuario.subtotal);
+                        ((TextView) view.findViewById(R.id.total)).setText(comUsuario.total);
+
+                        listMedicamentoShows = comUsuario.listMedicamentoShows;
+                        ListProductosCompraAdapter listProductosCompraAdapter = new ListProductosCompraAdapter(listMedicamentoShows,activity);
+                        LinearLayoutManager li = new LinearLayoutManager(activity.getApplicationContext());
+                        li.setOrientation(LinearLayoutManager.VERTICAL);
+
+                        recyclerView.setHasFixedSize(true);
+                        recyclerView.setLayoutManager(li);
+                        recyclerView.setAdapter(listProductosCompraAdapter);
+
+
+                    }
+                }
+                break;
+
+            case "Farmacia San-Pa":
+                for (ListCompraUsuario comUsuario : listCompraUsuarios){
+
+                    if (comUsuario.farmacia=="Farmacia San-Pa"){
+
+                        builder.setView(view);
+                        ((TextView) view.findViewById(R.id.titulo)).setText(comUsuario.farmacia);
+                        ((TextView) view.findViewById(R.id.telefono)).setText(comUsuario.telefono);
+                        ((TextView) view.findViewById(R.id.direccion)).setText(comUsuario.direccion);
+                        ((TextView) view.findViewById(R.id.subtotal)).setText(comUsuario.subtotal);
+                        ((TextView) view.findViewById(R.id.total)).setText(comUsuario.total);
+
+                        listMedicamentoShows= comUsuario.listMedicamentoShows;
+                        ListProductosCompraAdapter listProductosCompraAdapter = new ListProductosCompraAdapter(listMedicamentoShows,activity);
+                        LinearLayoutManager li = new LinearLayoutManager(activity.getApplicationContext());
+                        li.setOrientation(LinearLayoutManager.VERTICAL);
+
+                        recyclerView.setHasFixedSize(true);
+                        recyclerView.setLayoutManager(li);
+                        recyclerView.setAdapter(listProductosCompraAdapter);
+
+
+                    }
+                }
+                break;
+
+            case "Farmacia Walwart":
+                for (ListCompraUsuario comUsuario : listCompraUsuarios){
+
+                    if (comUsuario.farmacia=="Farmacia Walwart"){
+
+                        builder.setView(view);
+                        ((TextView) view.findViewById(R.id.titulo)).setText(comUsuario.farmacia);
+                        ((TextView) view.findViewById(R.id.telefono)).setText(comUsuario.telefono);
+                        ((TextView) view.findViewById(R.id.direccion)).setText(comUsuario.direccion);
+                        ((TextView) view.findViewById(R.id.subtotal)).setText(comUsuario.subtotal);
+                        ((TextView) view.findViewById(R.id.total)).setText(comUsuario.total);
+
+                        listMedicamentoShows = comUsuario.listMedicamentoShows;
+                        ListProductosCompraAdapter listProductosCompraAdapter = new ListProductosCompraAdapter(listMedicamentoShows,activity);
+                        LinearLayoutManager li = new LinearLayoutManager(activity.getApplicationContext());
+                        li.setOrientation(LinearLayoutManager.VERTICAL);
+
+                        recyclerView.setHasFixedSize(true);
+                        recyclerView.setLayoutManager(li);
+                        recyclerView.setAdapter(listProductosCompraAdapter);
+
+
+                    }
+                }
+                break;
+
+            case "Farmacia Gua":
+                for (ListCompraUsuario comUsuario : listCompraUsuarios){
+
+                    if (comUsuario.farmacia=="Farmacia Gua"){
+
+                        builder.setView(view);
+                        ((TextView) view.findViewById(R.id.titulo)).setText(comUsuario.farmacia);
+                        ((TextView) view.findViewById(R.id.telefono)).setText(comUsuario.telefono);
+                        ((TextView) view.findViewById(R.id.direccion)).setText(comUsuario.direccion);
+                        ((TextView) view.findViewById(R.id.subtotal)).setText(comUsuario.subtotal);
+                        ((TextView) view.findViewById(R.id.total)).setText(comUsuario.total);
+
+                        listMedicamentoShows = comUsuario.listMedicamentoShows;
+                        ListProductosCompraAdapter listProductosCompraAdapter = new ListProductosCompraAdapter(listMedicamentoShows,activity);
+                        LinearLayoutManager li = new LinearLayoutManager(activity.getApplicationContext());
+                        li.setOrientation(LinearLayoutManager.VERTICAL);
+
+                        recyclerView.setHasFixedSize(true);
+                        recyclerView.setLayoutManager(li);
+                        recyclerView.setAdapter(listProductosCompraAdapter);
+
+
+                    }
+                }
+                break;
+
+        }
+
+        AlertDialog alertDialog = builder.create();
+        view.findViewById(R.id.botonComprar).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+                showEnvioDialog((Activity) activity);
+            }
+        });
+
+        view.findViewById(R.id.imgIcon).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
+        if (alertDialog.getWindow() != null) {
+            alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+        }
+
+
+        alertDialog.show();
 
     }
 

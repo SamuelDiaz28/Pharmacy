@@ -1,8 +1,6 @@
 package mx.test.pharmacy.fragments;
 
 import android.Manifest;
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -11,26 +9,21 @@ import android.graphics.drawable.BitmapDrawable;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.os.Handler;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -42,48 +35,35 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import mx.test.pharmacy.R;
 import mx.test.pharmacy.adapters.ListFarmaciaPrecDistAdapter;
-import mx.test.pharmacy.adapters.ListMedicineAdapter;
 import mx.test.pharmacy.models.ListCompraUsuario;
-import mx.test.pharmacy.models.ListElementMedicine;
 import mx.test.pharmacy.models.ListFarmaciaPrecDist;
 import mx.test.pharmacy.models.ListMedicamentoShow;
-import mx.test.pharmacy.models.Medicament;
-import mx.test.pharmacy.roomData.AppDatabase;
-import mx.test.pharmacy.roomData.entities.Medicines;
 import mx.test.pharmacy.util.ComunMethod;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link MapFragment#newInstance} factory method to
+ * Use the {@link MapOffer2#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MapFragment extends Fragment implements OnMapReadyCallback, View.OnClickListener , LocationListener {
-
-    //
+public class MapOffer2 extends Fragment implements OnMapReadyCallback, View.OnClickListener , LocationListener {
+    //MAPAS
     private List<ListMedicamentoShow> listMedicamentoShows;
     private List<ListCompraUsuario> listCompraUsuarios;
-    private RecyclerView recyclerView;
     private List<ListFarmaciaPrecDist> elementMedicines;
     private ListFarmaciaPrecDistAdapter listFarmaciaPrecDistAdapter;
+    private RecyclerView recyclerView;
 
-    //MAPAS
-    private Marker marker1,marker2,marker3;
     private View rootView;
     private MapView mapView;
     private GoogleMap mMap;
     private FloatingActionButton fab;
-    Map<String, Integer> mMarkers = new HashMap<String, Integer>();
-    boolean doubleClick = false;
 
     private LocationManager locationManager;
     private Location currentLocation;
@@ -91,6 +71,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
     private Marker marker;
     private CameraPosition camara;
     Fragment currentFragment;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -100,9 +81,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
     private String mParam1;
     private String mParam2;
 
-    private ComunMethod commonMethods = new ComunMethod();
-
-    public MapFragment() {
+    public MapOffer2() {
         // Required empty public constructor
     }
 
@@ -112,11 +91,11 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment MapFragment.
+     * @return A new instance of fragment map_offer2.
      */
     // TODO: Rename and change types and number of parameters
-    public static MapFragment newInstance(String param1, String param2) {
-        MapFragment fragment = new MapFragment();
+    public static MapOffer2 newInstance(String param1, String param2) {
+        MapOffer2 fragment = new MapOffer2();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -127,23 +106,11 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
+        }
     }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-
-        rootView = inflater.inflate(R.layout.fragment_map, container, false);
-        elementMedicines = new ArrayList<>();
-        listCompraUsuarios = new ArrayList<>();
-        listMedicamentoShows = new ArrayList<>();
-        cargarFarmacias();
-        cargarListaUsuario();
-        return rootView;
-    }
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -154,15 +121,43 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
             mapView.onResume();
             mapView.getMapAsync(this);
         }
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        rootView = inflater.inflate(R.layout.fragment_map_offer2, container, false);
+
+        fab = rootView.findViewById(R.id.fload);
+        container.clearDisappearingChildren();
+
+        elementMedicines = new ArrayList<>();
+        listCompraUsuarios = new ArrayList<>();
+        listMedicamentoShows = new ArrayList<>();
+        cargarFarmacias();
+        cargarListaUsuario();
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(getContext(), "Atras " , Toast.LENGTH_SHORT).show();
+                currentFragment = new MedicineFragment();
+                changeOnFragment(currentFragment);
+            }
+        });
+        return rootView;
+    }
+
+    @Override
+    public void onLocationChanged(@NonNull Location location) {
 
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
+    public void onClick(View v) {
 
     }
-
 
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
@@ -178,9 +173,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
         mMap.setMyLocationEnabled(true);
         mMap.getUiSettings().setMyLocationButtonEnabled(true);
 
-
-        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1, 0,  this);
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,1,0,this);
+        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 0,  this);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, this);
 
         Location location = locationManager.getLastKnownLocation(locationManager.GPS_PROVIDER);
         if (location == null){
@@ -188,16 +182,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
         }
         currentLocation = location;
 
-        while (currentLocation == null){
-            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1, 0,  this);
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,1,0,this);
-
-            location = locationManager.getLastKnownLocation(locationManager.GPS_PROVIDER);
-            if (location == null){
-                location = locationManager.getLastKnownLocation(locationManager.NETWORK_PROVIDER);
-            }
-            currentLocation = location;
-        }
         zoomToLocation(currentLocation);
 
         int height = 100;
@@ -211,17 +195,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
         b = bitmapdraw1.getBitmap();
         Bitmap smallMarker1 = Bitmap.createScaledBitmap(b, width, height, false);
 
-        BitmapDrawable bitmapdraw2 = (BitmapDrawable)getResources().getDrawable(R.drawable.icfarmacia);
-        b = bitmapdraw2.getBitmap();
-        Bitmap smallMarker2 = Bitmap.createScaledBitmap(b, width, height, false);
-
-        BitmapDrawable bitmapdraw3 = (BitmapDrawable)getResources().getDrawable(R.drawable.icfarmacia);
-        b = bitmapdraw3.getBitmap();
-        Bitmap smallMarker3 = Bitmap.createScaledBitmap(b, width, height, false);
-
-        BitmapDrawable bitmapdraw4 = (BitmapDrawable)getResources().getDrawable(R.drawable.icfarmacia);
-        b = bitmapdraw4.getBitmap();
-        Bitmap smallMarker4 = Bitmap.createScaledBitmap(b, width, height, false);
 
         LatLng miUbicacion = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
         mMap.addMarker(new MarkerOptions().position(miUbicacion).title("Ubicación actual"));
@@ -240,54 +213,18 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
         LatLng farma3 = new LatLng(location.getLatitude()+0.00234, location.getLongitude()-0.0049);
         LatLng farma4 = new LatLng(location.getLatitude()+0.00000003, location.getLongitude()-0.0043);
 
-        MarkerOptions marcador1 = new MarkerOptions()
+        mMap.addMarker(new MarkerOptions()
                 .position(farma)
                 .title("Farmacia Ahora")
-                .snippet("Precio: $100.00 "+"\n"+" Tiempo de Entrega: 30 min")
-                .icon(BitmapDescriptorFactory.fromBitmap(smallMarker));
-
-        mMap.addMarker(marcador1);
-        MarkerOptions marcador2 = new MarkerOptions()
-                .position(farma1)
-                .title("Farmacia Esp")
-                .snippet("Precio: $99.00 "+"\n"+"Tiempo de Entrega: 25 min")
-                .icon(BitmapDescriptorFactory.fromBitmap(smallMarker1));
-        mMap.addMarker(marcador2);
-        /*mMap.addMarker(new MarkerOptions()
-                .position(farma1)
-                .title("Farmacia Esp ")
-                .snippet("Precio: 99.00 "+"\n"+"Tiempo de Entrega: 25 min")
-                .icon(BitmapDescriptorFactory.fromBitmap(smallMarker1)));*/
-        mMap.addMarker(new MarkerOptions()
-                .position(farma2)
-                .title("Farmacia San-Pa")
-                .snippet("Precio: $80.00 "+"\n"+"Tiempo de Entrega: 40 min")
-                .icon(BitmapDescriptorFactory.fromBitmap(smallMarker2)));
-                //.showInfoWindow();
-
-        Marker farmaWalwart = mMap.addMarker(new MarkerOptions()
-                .position(farma3)
-                .title("Farmacia Walwart")
-                .snippet("Precio: $110.00 "+"\n"+"Tiempo de Entrega: 15 min")
-                .icon(BitmapDescriptorFactory.fromBitmap(smallMarker3))
+                .snippet("Precio: 100.00 "+"\n"+" Tiempo de Entrega: 30 min")
+                .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
         );
-        /*mMap.addMarker(new MarkerOptions()
-                .position(farma3)
-                .title("Farmacia Walwart ")
-                .snippet("Precio: $110.00 "+"\n"+"Tiempo de Entrega: 15 min")
-                .icon(BitmapDescriptorFactory.fromBitmap(smallMarker3)))
-                .showInfoWindow();*/
-        Marker farmaGua = mMap.addMarker(new MarkerOptions()
+
+        mMap.addMarker(new MarkerOptions()
                 .position(farma4)
-                .title("Farmacia Gua")
-                .snippet("Precio: $60.00 "+"\n"+"Tiempo de Entrega: 55 min")
-                .icon(BitmapDescriptorFactory.fromBitmap(smallMarker4))
-                .infoWindowAnchor(0.5f, 0.5f));
-        /*mMap.addMarker(new MarkerOptions()
-                .position(farma4)
-                .title("Farmacia Gua ")
-                .snippet("Precio: $60.00 "+"\n"+"Tiempo de Entrega: 55 min")
-                .icon(BitmapDescriptorFactory.fromBitmap(smallMarker4)));*/
+                .title("Farmacia Esp")
+                .snippet("Precio: 60.00 "+"\n"+"Tiempo de Entrega: 55 min")
+                .icon(BitmapDescriptorFactory.fromBitmap(smallMarker1)));
 
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
@@ -303,8 +240,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
                 return true;
             }
         });
-
-
         mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
 
             @Override
@@ -327,7 +262,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
 
                 info.addView(title);
                 info.addView(snippet);
-                info.isClickable();
+
                 return info;
             }
         });
@@ -336,9 +271,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
             public void onInfoWindowClick(Marker arg0) {
                 // TODO Auto-generated method stub
                 String titulo = arg0.getTitle();
-                String descripcion = "Av.Reforma #1090 , Col. Centro";
-                String telefono ="555-555-5555";
-                String precio ="$90";
 
                 ComunMethod.showSuccessDialogShow(titulo,listCompraUsuarios, getActivity());
 
@@ -346,6 +278,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
 
         });
     }
+
     private void zoomToLocation(Location location){
         camara = new CameraPosition.Builder()
                 .target(new LatLng(location.getLatitude(), location.getLongitude()))
@@ -356,16 +289,12 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(camara));
     }
 
-    @Override
-    public void onLocationChanged(@NonNull Location location) {
-
+    //Cambiar de frame desde otro frame
+    private void changeOnFragment(Fragment fragment){
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.frame_layout, fragment);
+        transaction.commit();
     }
-
-    @Override
-    public void onClick(View v) {
-
-    }
-
     public void toggleBottomSheet(){
 
         View view = getLayoutInflater().inflate(R.layout.fragment_bottom_sheet, null);
@@ -375,10 +304,10 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
         //Button btnPago = view.findViewById(R.id.shetbotompagar);
 
 
-       /* btnPago.setOnClickListener(new View.OnClickListener() {
+        /*btnPago.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //ComunMethod.showSuccessDialog(titulo,telefono,precio,descripcion, getActivity());
+                ComunMethod.showSuccessDialogShow("Farmacia Ahora",listCompraUsuarios, getActivity());
             }
         });*/
 
@@ -386,7 +315,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
         dialog.setContentView(view);
         dialog.show();
     }
-
     private void showList(){
         listFarmaciaPrecDistAdapter = new ListFarmaciaPrecDistAdapter(elementMedicines, getContext());
         LinearLayoutManager li = new LinearLayoutManager(getContext());
@@ -396,14 +324,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
         recyclerView.setLayoutManager(li);
         recyclerView.setAdapter(listFarmaciaPrecDistAdapter);
     }
-
     private void cargarFarmacias(){
         elementMedicines.add(new ListFarmaciaPrecDist("Farmacia Ahora", "180.00", "1km"));
         elementMedicines.add(new ListFarmaciaPrecDist("Framacia Esp", "166.30", "2km"));
-        elementMedicines.add(new ListFarmaciaPrecDist("Framacia San-Pa", "150.10", "1.8km"));
-        elementMedicines.add(new ListFarmaciaPrecDist("Framacia Walwart", "132.50", "2.1km"));
-        elementMedicines.add(new ListFarmaciaPrecDist("Framacia Gua", "100.99", "3km"));
-
     }
     private void cargarListaUsuario(){
 
@@ -411,49 +334,13 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
 
         listCompraUsuarios.add(new ListCompraUsuario("Farmacia Ahora", "555-551-2453","Calle el Empleado #152 -A1, col.Vicente","180.00","180.00","1km",listMedicamentoShows));
         listCompraUsuarios.add(new ListCompraUsuario("Farmacia Esp", "555-652-7845","Av. Insurgentes Sur #458 -1, Tlalpan","166.30","166.30","2km",listMedicamentoShows ));
-        listCompraUsuarios.add(new ListCompraUsuario("Farmacia San-Pa", "555-753-1594","Av. Ferrocarril #245, col.Centro","150.10","150.10","1.8km",listMedicamentoShows));
-        listCompraUsuarios.add(new ListCompraUsuario("Farmacia Walwart", "555-956-1236","Calle el Empleado #1, col.Vicente","132.50","132.50","2.1km",listMedicamentoShows));
-        listCompraUsuarios.add(new ListCompraUsuario("Farmacia Gua", "555-648-2789","Calle el Empleado #1, col.Vicente","100.99","100.99","3km",listMedicamentoShows));
     }
 
     private void CargarMedicamentos(){
         listMedicamentoShows.add(new ListMedicamentoShow("Pirquet","Adulto","Fexofenadina","Tabletas","180 mg","10 Tabletas(1 caja)","209.50"));
         listMedicamentoShows.add(new ListMedicamentoShow("Buscapina","Adulto","Hioscina/Metamizol","Tabletas","10 mg/250 mg","24 Tabletas","358.00"));
         listMedicamentoShows.add(new ListMedicamentoShow("Arcoxia","Adulto","Etoricoxib","Tabletas","90 mg","28 Tabletas","1829.00"));
-        listMedicamentoShows.add(new ListMedicamentoShow("Colchicina Aurax","Adulto","Colchicina","Tabletas","1 mg","30 Tabletas","51.50"));
-        listMedicamentoShows.add(new ListMedicamentoShow("Melatonina Aurax","Adulto","Melatonina","Tabletas","5 mg","20 Tabletas","144.00"));
-    }
-
-    public class GetData extends AsyncTask<Void, Void, Boolean> {
-
-        @Override
-        protected Boolean doInBackground(Void... voids) {
-
-            try {
-                /*List<Medicines> medicinesList = AppDatabase.getInstance(getActivity().getApplicationContext()).medicinesDao().get();
-
-                for (Medicines medicine : medicinesList) {
-
-                    elementMedicines.add(new ListFarmaciaPrecDist(medicine.getName(), medicine.getCost(), medicine.getGrammage(), medicine.getImgMedicine()));
-                }*/
-
-
-                return true;
-            } catch (Exception e) {
-
-                Log.e("ObverseIdentifyFragment", "Error al almacenar reporte", e);
-                return false;
-
-            }
-        }
-
-        @Override
-        protected void onPostExecute(Boolean ok) {
-            Toast.makeText(getActivity(), ok ? "Datos almacenados" : "Ocurrio un error al intentar almacenar los datos", Toast.LENGTH_LONG).show();
-            if (ok) {
-                showList();
-            }
-
-        }
+        //listMedicamentoShows.add(new ListMedicamentoShow("Colchicina Aurax","Adulto","Colchicina","Tabletas","1 mg","30 Tabletas","51.50"));
+        //listMedicamentoShows.add(new ListMedicamentoShow("Melatonina Aurax","Adulto","Melatonina","Tabletas","5 mg","20 Tabletas","144.00"));
     }
 }

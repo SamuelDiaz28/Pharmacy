@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -51,6 +52,7 @@ public class ListFarmaciaPrecDistAdapter extends RecyclerView.Adapter<ListFarmac
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView farmacia, total, distancia;
+        Button btn;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -58,12 +60,20 @@ public class ListFarmaciaPrecDistAdapter extends RecyclerView.Adapter<ListFarmac
             farmacia = itemView.findViewById(R.id.txtName1);
             total = itemView.findViewById(R.id.txtCost);
             distancia = itemView.findViewById(R.id.txtKlm);
+            //btn = itemView.findViewById(R.id.shetbotompagar);
         }
 
         void binData(final ListFarmaciaPrecDist item){
             farmacia.setText(item.getFarmacia());
             total.setText("$"+item.getTotal());
             distancia.setText(item.getDistancia());
+
+            /*btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });*/
         }
     }
 

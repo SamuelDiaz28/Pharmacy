@@ -10,6 +10,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -60,6 +61,9 @@ public class MedicineFragment extends Fragment implements View.OnClickListener {
 
     private Dialog dialog;
 
+    Fragment currentFragment = new MapOffer1();
+    Fragment currentFragment2 = new MapOffer2();
+
 
     public MedicineFragment() {
         // Required empty public constructor
@@ -95,6 +99,33 @@ public class MedicineFragment extends Fragment implements View.OnClickListener {
 
         // Inflate the layout for this fragment
         return root;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        //FloatingActionButton floatingActionButton = view.findViewById(R.id.fabAgregarGasto);
+        ConstraintLayout offer = (ConstraintLayout)view.findViewById(R.id.ofertas);
+        ConstraintLayout offer2 = (ConstraintLayout)view.findViewById(R.id.ofertas2);
+
+        offer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Aquí el código cuando se hace click
+                changeFragment(currentFragment);
+            }
+        });
+
+        offer2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeFragment(currentFragment2);
+            }
+        });
+
+    }
+    private void changeFragment(Fragment fragment){
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.frame_layout, fragment).commit();
     }
 
 

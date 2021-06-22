@@ -25,6 +25,7 @@
             android:textColor="@color/colorAccent"
             android:textSize="18sp"
             android:textStyle="bold"
+            android:background="@drawable/header_background"
             app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -128,7 +129,7 @@
             android:gravity="center"
             android:text="Procesar pago"
             android:textColor="@color/white"
-            app:backgroundTint="@color/color_verde"
+            app:backgroundTint="@color/colorPrimary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.924"
             app:layout_constraintStart_toStartOf="parent"

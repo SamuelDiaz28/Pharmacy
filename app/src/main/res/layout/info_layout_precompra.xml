@@ -20,7 +20,7 @@
             android:id="@+id/titulo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/infoalert_custom"
+            android:background="@drawable/header_background"
             android:padding="10dp"
             android:textColor="@color/white"
             android:textSize="18sp"
@@ -52,8 +52,21 @@
             android:textSize="16sp"
             android:gravity="center"
             app:layout_constraintTop_toBottomOf="@id/titulo"/>
-        <TextView
+        <!--<TextView
             android:id="@+id/precio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="40dp"
+            android:textColor="@color/colorAccent"
+            android:textSize="16sp"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/telefono"/>-->
+
+        <TextView
+            android:id="@+id/direccion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -65,46 +78,136 @@
             android:gravity="center"
             app:layout_constraintTop_toBottomOf="@id/telefono"/>
 
-        <TextView
-            android:id="@+id/descripcion"
+        <View
+            android:id="@+id/divider3"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="1dp"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="40dp"
-            android:textColor="@color/colorAccent"
-            android:textSize="16sp"
-            android:gravity="center"
-            app:layout_constraintTop_toBottomOf="@id/precio"/>
+            android:background="?android:attr/listDivider"
+            app:layout_constraintTop_toBottomOf="@id/direccion"/>
 
-        <TextView
-            android:id="@+id/descripcion2"
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_dialog"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="280dp"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:clipToPadding="true"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@id/divider3"/>
+
+
+        <View
+            android:id="@+id/divider4"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="40dp"
-            android:textColor="@color/colorAccent"
-            android:textSize="16sp"
-            android:gravity="center"
-            app:layout_constraintTop_toBottomOf="@id/descripcion"/>
+            android:background="?android:attr/listDivider"
+            app:layout_constraintTop_toBottomOf="@id/recyclerView_dialog" />
+
+        <LinearLayout
+            android:id="@+id/lyout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:layout_marginLeft="4dp"
+            app:layout_constraintTop_toBottomOf="@id/divider4"
+            tools:ignore="MissingConstraints">
+            <TextView
+                android:id="@+id/txtSubtotal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="40dp"
+                android:textColor="@color/colorAccent"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:text="Subtotal: "
+                app:layout_constraintTop_toBottomOf="@id/lyout2"/>
+            <TextView
+                android:id="@+id/subtotal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="40dp"
+                android:textColor="@color/colorAccent"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:text="$160.00"
+                app:layout_constraintTop_toBottomOf="@id/txtSubtotal"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lyout1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:layout_marginLeft="4dp"
+            app:layout_constraintTop_toBottomOf="@id/lyout"
+            tools:ignore="MissingConstraints">
+            <TextView
+                android:id="@+id/txttotal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="40dp"
+                android:textColor="@color/colorAccent"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:text="Total"
+                app:layout_constraintTop_toBottomOf="@id/lyout1"/>
+            <TextView
+                android:id="@+id/total"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="40dp"
+                android:textColor="@color/colorAccent"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:text="$1000.00"
+                app:layout_constraintTop_toBottomOf="@id/total"/>
 
 
+
+        </LinearLayout>
         <Button
             android:id="@+id/botonComprar"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@drawable/boton_azul"
+            android:background="@drawable/custom_button"
             android:gravity="center"
             android:text="Envio"
             android:textColor="@color/white"
-            app:backgroundTint="@color/color_azul"
+            app:backgroundTint="@color/colorPrimary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/descripcion2" />
+            app:layout_constraintTop_toBottomOf="@+id/lyout1" />
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
