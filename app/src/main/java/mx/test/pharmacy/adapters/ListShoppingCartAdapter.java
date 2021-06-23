@@ -55,12 +55,13 @@ public class ListShoppingCartAdapter extends RecyclerView.Adapter<ListShoppingCa
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         ImageView iconImage, iconCart;
-        TextView name, cost;
+        TextView name, cost, ingredient;
 
         ViewHolder(View itemView){
             super(itemView);
             iconImage = itemView.findViewById(R.id.icImageView);
             name = itemView.findViewById(R.id.txtName);
+            ingredient = itemView.findViewById(R.id.txtActiveIngredient);
             cost = itemView.findViewById(R.id.txtCost);
             iconCart = itemView.findViewById(R.id.imgCart);
         }
@@ -68,6 +69,7 @@ public class ListShoppingCartAdapter extends RecyclerView.Adapter<ListShoppingCa
         void bindData(final Medicines item){
             iconImage.setImageBitmap(comunMethod.getDecodedB64(item.getImgMedicine()));
             name.setText(item.getName());
+            ingredient.setText(item.getActiveIngredient());
             cost.setText(item.getGrammage());
 
             iconCart.setOnClickListener(new View.OnClickListener() {

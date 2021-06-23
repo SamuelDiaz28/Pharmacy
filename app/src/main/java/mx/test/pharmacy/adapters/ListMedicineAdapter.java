@@ -64,12 +64,13 @@ public class ListMedicineAdapter extends RecyclerView.Adapter<ListMedicineAdapte
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView iconImage, iconCart;
-        TextView name, cost;
+        TextView name, cost, ingredient;
 
         ViewHolder(View itemView) {
             super(itemView);
             iconImage = itemView.findViewById(R.id.icImageView);
             name = itemView.findViewById(R.id.txtName);
+            ingredient = itemView.findViewById(R.id.txtActiveIngredient);
             cost = itemView.findViewById(R.id.txtCost);
             iconCart = itemView.findViewById(R.id.imgCart);
 
@@ -78,6 +79,7 @@ public class ListMedicineAdapter extends RecyclerView.Adapter<ListMedicineAdapte
         void bindData(final Medicament item) {
             iconImage.setImageBitmap(comunMethod.getDecodedB64(item.getImagen()));
             name.setText(item.getNombre());
+            ingredient.setText(item.getIngredienteactivo());
             cost.setText(item.getComposicion());
 
             iconCart.setOnClickListener(new View.OnClickListener() {

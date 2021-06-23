@@ -60,6 +60,17 @@
                     android:gravity="center"/>
 
                 <TextView
+                    android:id="@+id/txtActiveIngredient"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:text="Active Ingredient"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:gravity="center"/>
+
+                <TextView
                     android:id="@+id/txtCost"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
