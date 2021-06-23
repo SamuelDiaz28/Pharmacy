@@ -311,7 +311,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
                 .snippet("Precio: $60.00 "+"\n"+"Tiempo de Entrega: 55 min")
                 .icon(BitmapDescriptorFactory.fromBitmap(smallMarker4)));*/
 
-        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+        /*mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(@NonNull Marker marker) {
 
@@ -324,7 +324,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
                 }
                 return true;
             }
-        });
+        });*/
 
 
         mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
