@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layoutDialogContainer"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:layout_margin="1dp"
     android:padding="1dp"
     android:background="@drawable/white_rectangle_background">
@@ -13,7 +13,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layoutDialog"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="@drawable/white_rectangle_background"
         android:clipToPadding="true"
         android:scrollbars="vertical"
@@ -54,7 +54,7 @@
             android:clipToPadding="true"
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintTop_toBottomOf="@id/titulo_farmacia"/>
+            app:layout_constraintTop_toBottomOf="@id/titulo_farmacia" />
 
 
         <!--<TextView

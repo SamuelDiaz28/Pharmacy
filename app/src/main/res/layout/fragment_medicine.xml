@@ -129,6 +129,7 @@
                         app:layout_constraintBottom_toBottomOf="@id/ofertas"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/ofertas"
+                        android:adjustViewBounds="true"
                         />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -147,6 +148,7 @@
                         app:layout_constraintBottom_toBottomOf="@id/ofertas2"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/ofertas2"
+                        android:adjustViewBounds="true"
                         />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>

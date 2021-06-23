@@ -237,7 +237,7 @@ public class MapOffer1 extends Fragment implements OnMapReadyCallback, View.OnCl
             public boolean onMarkerClick(@NonNull Marker marker) {
 
                 //Mandamos a traer el boottomSheet
-                toggleBottomSheet();
+                //toggleBottomSheet();
                 if (marker.isInfoWindowShown()) {
                     marker.hideInfoWindow();
                 } else {

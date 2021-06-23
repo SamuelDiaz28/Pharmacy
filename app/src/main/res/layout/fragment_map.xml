@@ -30,7 +30,8 @@
                 android:layout_margin="16dp"
                 android:background="@color/colorPrimary"
                 android:clickable="true"
-                android:src="@drawable/ic_compara"
+                android:tooltipText="Ver Informacion"
+                android:src="@drawable/ic_info_farma"
                 app:backgroundTint="#5ECA24" />
         </FrameLayout>
     </androidx.drawerlayout.widget.DrawerLayout>

@@ -86,9 +86,9 @@ public class MedicineFragment extends Fragment implements View.OnClickListener {
         iconScan.setOnClickListener(this);
 
         elementMedicines = new ArrayList<>();
-        elementMedicines.add(new ListElementMedicine("PARACETAMOL", "$200.00", "500 mg", getString(R.string.paracetamol)));
-        elementMedicines.add(new ListElementMedicine("ASPIRINA", "$100.00", "500 mg", getString(R.string.aspirina)));
-        elementMedicines.add(new ListElementMedicine("AMBROXOL", "$50.00", "250 mg", getString(R.string.ambroxol)));
+        elementMedicines.add(new ListElementMedicine("PARACETAMOL", "200.00", "500 mg", getString(R.string.paracetamol)));
+        elementMedicines.add(new ListElementMedicine("ASPIRINA", "100.00", "500 mg", getString(R.string.aspirina)));
+        elementMedicines.add(new ListElementMedicine("AMBROXOL", "50.00", "250 mg", getString(R.string.ambroxol)));
 
         listMedicineAdapter = new ListMedicineAdapter(elementMedicines, getContext());
         LinearLayoutManager li = new LinearLayoutManager(getActivity());

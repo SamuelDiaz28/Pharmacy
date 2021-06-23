@@ -70,6 +70,7 @@ import mx.test.pharmacy.util.ComunMethod;
 public class MapFragment extends Fragment implements OnMapReadyCallback, View.OnClickListener , LocationListener {
 
     //LISTA MEDICAMENTOS Y FARMACIAS
+    private List<ListMedicamentoShow> listMedicamentoShowsPrecargados;
     private List<ListMedicamentoShow> listMedicamentoShows;
     private List<ListCompraUsuario> listCompraUsuarios;
     private RecyclerView recyclerView;
@@ -142,8 +143,10 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
         elementMedicines = new ArrayList<>();
         listCompraUsuarios = new ArrayList<>();
         listMedicamentoShows = new ArrayList<>();
+        listMedicamentoShowsPrecargados = new ArrayList<>();
         cargarFarmacias();
         cargarListaUsuario();
+        new GetData().execute();
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -256,14 +259,14 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
         MarkerOptions marcador1 = new MarkerOptions()
                 .position(farma)
                 .title("Farmacia Ahora")
-                .snippet("Distancia: 1 km "+"\n"+" Tiempo de Entrega: 20 min")
+                .snippet("Distancia: 1 km ")
                 .icon(BitmapDescriptorFactory.fromBitmap(smallMarker));
 
         mMap.addMarker(marcador1);
         MarkerOptions marcador2 = new MarkerOptions()
                 .position(farma1)
                 .title("Farmacia Esp")
-                .snippet("Distancia: 2 km "+"\n"+"Tiempo de Entrega: 35 min")
+                .snippet("Distancia: 2 km ")
                 .icon(BitmapDescriptorFactory.fromBitmap(smallMarker1));
         mMap.addMarker(marcador2);
         /*mMap.addMarker(new MarkerOptions()
@@ -274,14 +277,14 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
         mMap.addMarker(new MarkerOptions()
                 .position(farma2)
                 .title("Farmacia San-Pa")
-                .snippet("Distancia: 1.8 km"+"\n"+"Tiempo de Entrega: 30 min")
+                .snippet("Distancia: 1.8 km")
                 .icon(BitmapDescriptorFactory.fromBitmap(smallMarker2)));
                 //.showInfoWindow();
 
         Marker farmaWalwart = mMap.addMarker(new MarkerOptions()
                 .position(farma3)
                 .title("Farmacia Walwart")
-                .snippet("Distancia: 2.1 km"+"\n"+"Tiempo de Entrega: 37 min")
+                .snippet("Distancia: 2.1 km")
                 .icon(BitmapDescriptorFactory.fromBitmap(smallMarker3))
         );
         /*mMap.addMarker(new MarkerOptions()
@@ -293,7 +296,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
         Marker farmaGua = mMap.addMarker(new MarkerOptions()
                 .position(farma4)
                 .title("Farmacia Gua")
-                .snippet("Distancia: 3 km "+"\n"+"Tiempo de Entrega: 55 min")
+                .snippet("Distancia: 3 km ")
                 .icon(BitmapDescriptorFactory.fromBitmap(smallMarker4))
                 .infoWindowAnchor(0.5f, 0.5f));
         /*mMap.addMarker(new MarkerOptions()
@@ -353,6 +356,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
                 String telefono ="555-555-5555";
                 String precio ="$90";
 
+                cargarListaUsuarioPrecargado();
                 ComunMethod.showSuccessDialogShow(titulo,listCompraUsuarios, getActivity());
 
             }
@@ -423,18 +427,24 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
         CargarMedicamentos();
 
         listCompraUsuarios.add(new ListCompraUsuario("Farmacia Ahora", "555-551-2453","Calle el Empleado #152 -A1, col.Vicente","180.00","180.00","1km",listMedicamentoShows));
-        listCompraUsuarios.add(new ListCompraUsuario("Farmacia Esp", "555-652-7845","Av. Insurgentes Sur #458 -1, Tlalpan","166.30","166.30","2km",listMedicamentoShows ));
-        listCompraUsuarios.add(new ListCompraUsuario("Farmacia San-Pa", "555-753-1594","Av. Ferrocarril #245, col.Centro","150.10","150.10","1.8km",listMedicamentoShows));
-        listCompraUsuarios.add(new ListCompraUsuario("Farmacia Walwart", "555-956-1236","Calle el Empleado #1, col.Vicente","132.50","132.50","2.1km",listMedicamentoShows));
-        listCompraUsuarios.add(new ListCompraUsuario("Farmacia Gua", "555-648-2789","Calle el Empleado #1, col.Vicente","100.99","100.99","3km",listMedicamentoShows));
+        //listCompraUsuarios.add(new ListCompraUsuario("Farmacia Esp", "555-652-7845","Av. Insurgentes Sur #458 -1, Tlalpan","166.30","166.30","2km",listMedicamentoShows ));
+        //listCompraUsuarios.add(new ListCompraUsuario("Farmacia San-Pa", "555-753-1594","Av. Ferrocarril #245, col.Centro","150.10","150.10","1.8km",listMedicamentoShows));
+        //listCompraUsuarios.add(new ListCompraUsuario("Farmacia Walwart", "555-956-1236","Calle el Empleado #1, col.Vicente","132.50","132.50","2.1km",listMedicamentoShows));
+        //listCompraUsuarios.add(new ListCompraUsuario("Farmacia Gua", "555-648-2789","Calle el Empleado #1, col.Vicente","100.99","100.99","3km",listMedicamentoShows));
+    }
+    private void cargarListaUsuarioPrecargado(){
+        listCompraUsuarios.add(new ListCompraUsuario("Farmacia Esp", "555-652-7845","Av. Insurgentes Sur #458 -1, Tlalpan","166.30","166.30","2km",listMedicamentoShowsPrecargados ));
+        listCompraUsuarios.add(new ListCompraUsuario("Farmacia San-Pa", "555-753-1594","Av. Ferrocarril #245, col.Centro","150.10","150.10","1.8km",listMedicamentoShowsPrecargados));
+        listCompraUsuarios.add(new ListCompraUsuario("Farmacia Walwart", "555-956-1236","Calle el Empleado #1, col.Vicente","132.50","132.50","2.1km",listMedicamentoShowsPrecargados));
+        listCompraUsuarios.add(new ListCompraUsuario("Farmacia Gua", "555-648-2789","Calle el Empleado #1, col.Vicente","100.99","100.99","3km",listMedicamentoShowsPrecargados));
     }
 
     private void CargarMedicamentos(){
-        listMedicamentoShows.add(new ListMedicamentoShow("Pirquet","Adulto","Fexofenadina","Tabletas","180 mg","10 Tabletas(1 caja)","209.50"));
-        listMedicamentoShows.add(new ListMedicamentoShow("Buscapina","Adulto","Hioscina/Metamizol","Tabletas","10 mg/250 mg","24 Tabletas","358.00"));
-        listMedicamentoShows.add(new ListMedicamentoShow("Arcoxia","Adulto","Etoricoxib","Tabletas","90 mg","28 Tabletas","1829.00"));
-        listMedicamentoShows.add(new ListMedicamentoShow("Colchicina Aurax","Adulto","Colchicina","Tabletas","1 mg","30 Tabletas","51.50"));
-        listMedicamentoShows.add(new ListMedicamentoShow("Melatonina Aurax","Adulto","Melatonina","Tabletas","5 mg","20 Tabletas","144.00"));
+        listMedicamentoShowsPrecargados.add(new ListMedicamentoShow("Pirquet","Adulto","Fexofenadina","Tabletas","180 mg","10 Tabletas(1 caja)","209.50"));
+        listMedicamentoShowsPrecargados.add(new ListMedicamentoShow("Buscapina","Adulto","Hioscina/Metamizol","Tabletas","10 mg/250 mg","24 Tabletas","358.00"));
+        listMedicamentoShowsPrecargados.add(new ListMedicamentoShow("Arcoxia","Adulto","Etoricoxib","Tabletas","90 mg","28 Tabletas","1829.00"));
+        listMedicamentoShowsPrecargados.add(new ListMedicamentoShow("Colchicina Aurax","Adulto","Colchicina","Tabletas","1 mg","30 Tabletas","51.50"));
+        listMedicamentoShowsPrecargados.add(new ListMedicamentoShow("Melatonina Aurax","Adulto","Melatonina","Tabletas","5 mg","20 Tabletas","144.00"));
     }
 
     public class GetData extends AsyncTask<Void, Void, Boolean> {
@@ -443,12 +453,12 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
         protected Boolean doInBackground(Void... voids) {
 
             try {
-                /*List<Medicines> medicinesList = AppDatabase.getInstance(getActivity().getApplicationContext()).medicinesDao().get();
+                List<Medicines> medicinesList = AppDatabase.getInstance(getActivity().getApplicationContext()).medicinesDao().get();
 
                 for (Medicines medicine : medicinesList) {
+                    listMedicamentoShows.add(new ListMedicamentoShow(medicine.getName(),"Adulto","","",medicine.getGrammage(),"",medicine.getCost()));
+                }
 
-                    elementMedicines.add(new ListFarmaciaPrecDist(medicine.getName(), medicine.getCost(), medicine.getGrammage(), medicine.getImgMedicine()));
-                }*/
 
 
                 return true;
@@ -460,13 +470,13 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
             }
         }
 
-        @Override
+        /*@Override
         protected void onPostExecute(Boolean ok) {
             Toast.makeText(getActivity(), ok ? "Datos almacenados" : "Ocurrio un error al intentar almacenar los datos", Toast.LENGTH_LONG).show();
             if (ok) {
                 showList();
             }
 
-        }
+        }*/
     }
 }
