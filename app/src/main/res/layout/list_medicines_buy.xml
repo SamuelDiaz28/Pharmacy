@@ -19,26 +19,39 @@
         android:layout_marginRight="10dp">
 
         <RelativeLayout
-            android:id="@+id/rlative1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="6dp">
-            
+
+                <ImageView
+                    android:layout_width="120dp"
+                    android:layout_height="60dp"
+                    android:id="@+id/icImageView_buy"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:paddingLeft="14dp"
+                    android:paddingRight="14dp"
+                    android:src="@drawable/ic_medicamento"
+                    android:adjustViewBounds="true"/>
 
             <LinearLayout
-                android:id="@+id/layoutTitulo"
+                android:id="@+id/layout_Titulo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="1dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="2dp"
                 android:orientation="vertical"
-                android:layout_marginLeft="4dp">
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="4dp"
+                android:layout_toEndOf="@+id/icImageView_buy"
+                android:layout_toRightOf="@+id/icImageView_buy">
                 <TextView
                     android:id="@+id/txtNomMed"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="2dp"
+                    android:layout_marginBottom="4dp"
                     android:gravity="left"
                     android:text="Pirquet"
                     android:textColor="@color/black"
@@ -48,7 +61,7 @@
                     android:id="@+id/txtingrdntActv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="2dp"
+                    android:layout_marginBottom="4dp"
                     android:gravity="left"
                     android:text="Fexofeni"
                     android:textColor="@color/black"
@@ -58,7 +71,7 @@
                     android:id="@+id/txtComposicion"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="2dp"
+                    android:layout_marginBottom="4dp"
                     android:gravity="left"
                     android:text="180 mg"
                     android:textColor="@color/black"
@@ -66,21 +79,22 @@
                     android:textStyle="bold" />
             </LinearLayout>
             <LinearLayout
-                android:id="@+id/lyout1"
+                android:id="@+id/lyout_info1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="1dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="2dp"
                 android:orientation="vertical"
+                android:layout_centerInParent="true"
                 android:layout_marginLeft="4dp"
-                android:layout_toEndOf="@+id/layoutTitulo"
-                android:layout_toRightOf="@+id/layoutTitulo">
+                android:layout_toEndOf="@+id/layout_Titulo"
+                android:layout_toRightOf="@+id/layout_Titulo">
 
                 <TextView
                     android:id="@+id/txtformaFarmaceutica"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="2dp"
+                    android:layout_marginBottom="4dp"
                     android:text="Tabletas"
                     android:textColor="@color/black"
                     android:textSize="8sp"
@@ -91,7 +105,7 @@
                     android:id="@+id/txtCategoria"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="2dp"
+                    android:layout_marginBottom="4dp"
                     android:gravity="left"
                     android:text="Adulto"
                     android:textColor="@color/black"
@@ -101,7 +115,7 @@
                     android:id="@+id/txtPresentacion"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="2dp"
+                    android:layout_marginBottom="4dp"
                     android:gravity="left"
                     android:text="10 Tabletas(1 caja)"
                     android:textColor="@color/black"
@@ -111,20 +125,20 @@
 
             <LinearLayout
                 android:id="@+id/lyout2"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
+                android:layout_marginStart="4dp"
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal"
+                android:layout_centerInParent="true"
                 android:layout_marginLeft="4dp"
-                android:layout_toEndOf="@id/lyout1"
-                android:layout_alignParentEnd="true"
-                android:layout_toRightOf="@id/lyout1">
+                android:layout_toEndOf="@id/lyout_info1"
+                android:layout_toRightOf="@id/lyout_info1">
 
 
                 <TextView
                     android:id="@+id/txtPrecio"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="2dp"
                     android:gravity="center"

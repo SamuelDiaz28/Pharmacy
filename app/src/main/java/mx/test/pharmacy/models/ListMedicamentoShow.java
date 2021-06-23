@@ -8,8 +8,9 @@ public class ListMedicamentoShow {
     public String composicion;
     public String presentacion;
     public String precio;
+    public String img;
 
-    public ListMedicamentoShow(String nombreMedicamento, String categoria, String ingredienteActivo, String formaFarmaceutica, String composicion, String presentacion, String precio) {
+    public ListMedicamentoShow(String nombreMedicamento, String categoria, String ingredienteActivo, String formaFarmaceutica, String composicion, String presentacion, String precio, String img) {
         this.nombreMedicamento = nombreMedicamento;
         this.categoria = categoria;
         this.ingredienteActivo = ingredienteActivo;
@@ -17,6 +18,7 @@ public class ListMedicamentoShow {
         this.composicion = composicion;
         this.presentacion = presentacion;
         this.precio = precio;
+        this.img = img;
     }
 
     public String getNombreMedicamento() {
@@ -73,5 +75,13 @@ public class ListMedicamentoShow {
 
     public void setPrecio(String precio) {
         this.precio = precio;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 }

@@ -9,6 +9,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
@@ -67,9 +68,10 @@ public class ComunMethod{
 
                         for (ListMedicamentoShow listMedicamentoShow : comUsuario.listMedicamentoShows){
                             total += Double.parseDouble(listMedicamentoShow.precio);
-
                         }
                         ((TextView) view.findViewById(R.id.total)).setText(String.valueOf(total));
+
+
                         //total = subtotal;
                         listMedicamentoShows = comUsuario.listMedicamentoShows;
                         ListProductosCompraAdapter listProductosCompraAdapter = new ListProductosCompraAdapter(listMedicamentoShows,activity);
@@ -403,6 +405,12 @@ public class ComunMethod{
     }
 
     public Bitmap getDecodedB64(String encodedImage){
+        byte[] decodedString = Base64.decode(encodedImage, Base64.DEFAULT);
+        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+        return decodedByte;
+    }
+
+    public static Bitmap getDecodedB642(String encodedImage){
         byte[] decodedString = Base64.decode(encodedImage, Base64.DEFAULT);
         Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
         return decodedByte;

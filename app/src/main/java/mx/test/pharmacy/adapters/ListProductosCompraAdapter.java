@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,6 +15,8 @@ import java.util.List;
 import mx.test.pharmacy.R;
 import mx.test.pharmacy.models.ListFarmaciaPrecDist;
 import mx.test.pharmacy.models.ListMedicamentoShow;
+
+import mx.test.pharmacy.util.ComunMethod;
 
 public class ListProductosCompraAdapter extends RecyclerView.Adapter<ListProductosCompraAdapter.ViewHolder> {
 
@@ -46,6 +49,7 @@ public class ListProductosCompraAdapter extends RecyclerView.Adapter<ListProduct
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView nomMed, ingrdntActv, composicion, formaFarma, categoria,presentacion,precio;
+        ImageView img;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -57,6 +61,7 @@ public class ListProductosCompraAdapter extends RecyclerView.Adapter<ListProduct
             categoria = itemView.findViewById(R.id.txtCategoria);
             presentacion = itemView.findViewById(R.id.txtPresentacion);
             precio = itemView.findViewById(R.id.txtPrecio);
+            img = itemView.findViewById(R.id.icImageView_buy);
 
         }
 
@@ -68,6 +73,7 @@ public class ListProductosCompraAdapter extends RecyclerView.Adapter<ListProduct
             categoria.setText(item.getCategoria());
             presentacion.setText(item.getPresentacion());
             precio.setText("$"+item.getPrecio());
+            img.setImageBitmap(ComunMethod.getDecodedB642(item.img));
 
         }
     }

@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        getLocalizacion();
         getSupportActionBar().hide();
 
         BottomNavigationView navigation = findViewById(R.id.navigation);
@@ -111,6 +111,20 @@ public class MainActivity extends AppCompatActivity {
         fragment.onActivityResult(requestCode, resultCode, data);
 
         super.onActivityResult(requestCode, resultCode, data);
+    }
+    private void getLocalizacion() {
+        int permiso = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION);
+        if(permiso == PackageManager.PERMISSION_DENIED){
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+        }
+        /* Fragmentos
+            if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions((Activity) getContext(),
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    1
+            );
+        }*/
+
     }
 
 }
