@@ -3,6 +3,7 @@
 package mx.test.pharmacy;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -11,11 +12,15 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 import mx.test.pharmacy.fragments.MapFragment;
 import mx.test.pharmacy.fragments.MedicineFragment;
@@ -84,6 +89,28 @@ public class MainActivity extends AppCompatActivity {
         if(push)
             fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
+    }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+
+        /*IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+
+        if (result != null){
+            if (result.getContents() == null){
+                Toast.makeText(this, "Escaneo cancelado", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this.getApplicationContext(), result.getContents(), Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            super.onActivityResult(requestCode, resultCode, data);
+        }*/
+
+        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.frame_layout);
+        fragment.onActivityResult(requestCode, resultCode, data);
+
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
 }

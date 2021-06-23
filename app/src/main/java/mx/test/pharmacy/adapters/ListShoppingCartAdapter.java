@@ -21,12 +21,12 @@ import mx.test.pharmacy.util.ComunMethod;
 
 public class ListShoppingCartAdapter extends RecyclerView.Adapter<ListShoppingCartAdapter.ViewHolder> {
 
-    private List<ListElementMedicine> mData;
+    private List<Medicines> mData;
     private LayoutInflater mInflater;
     private Context context;
     private ComunMethod comunMethod = new ComunMethod();
 
-    public ListShoppingCartAdapter(List<ListElementMedicine> itemList, Context context){
+    public ListShoppingCartAdapter(List<Medicines> itemList, Context context){
         this.mInflater = LayoutInflater.from(context);
         this.context = context;
         this.mData = itemList;
@@ -48,7 +48,7 @@ public class ListShoppingCartAdapter extends RecyclerView.Adapter<ListShoppingCa
         holder.bindData(mData.get(position));
     }
 
-    public void setItems(List<ListElementMedicine> items) {
+    public void setItems(List<Medicines> items) {
         mData = items;
     }
 
@@ -65,17 +65,36 @@ public class ListShoppingCartAdapter extends RecyclerView.Adapter<ListShoppingCa
             iconCart = itemView.findViewById(R.id.imgCart);
         }
 
-        void bindData(final ListElementMedicine item){
-            iconImage.setImageBitmap(comunMethod.getDecodedB64(item.getResourceImg()));
+        void bindData(final Medicines item){
+            iconImage.setImageBitmap(comunMethod.getDecodedB64(item.getImgMedicine()));
             name.setText(item.getName());
-            cost.setText("$" + item.getCost());
+            cost.setText(item.getGrammage());
 
             iconCart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    new DeleteItem().execute(item);
                 }
             });
+        }
+    }
+
+    public class DeleteItem extends AsyncTask<Medicines, Void, Boolean> {
+        @Override
+        protected Boolean doInBackground(Medicines... medicines) {
+
+            AppDatabase.getInstance(context).medicinesDao().delete(medicines[0]);
+            mData.remove(medicines[0]);
+
+            return true;
+
+        }
+
+        @Override
+        protected void onPostExecute(Boolean ok) {
+            if (ok) {
+                notifyDataSetChanged();
+            }
         }
     }
 

@@ -27,6 +27,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 
+import com.google.zxing.BarcodeFormat;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -60,6 +61,8 @@ public class MedicineFragment extends Fragment implements View.OnClickListener {
     private EditText edtSearch;
 
     private Dialog dialog;
+    private String barCode;
+
 
     Fragment currentFragment = new MapOffer1();
     Fragment currentFragment2 = new MapOffer2();
@@ -83,9 +86,9 @@ public class MedicineFragment extends Fragment implements View.OnClickListener {
         iconScan.setOnClickListener(this);
 
         elementMedicines = new ArrayList<>();
-        elementMedicines.add(new ListElementMedicine("PARACETAMOL", "$200.00", "500 mg", "#0a9396"));
-        elementMedicines.add(new ListElementMedicine("ASPIRINA", "$100.00", "500 mg", "#bb3e03"));
-        elementMedicines.add(new ListElementMedicine("AMBROXOL", "$50.00", "250 mg", "#e9d8a6"));
+        elementMedicines.add(new ListElementMedicine("PARACETAMOL", "$200.00", "500 mg", getString(R.string.paracetamol)));
+        elementMedicines.add(new ListElementMedicine("ASPIRINA", "$100.00", "500 mg", getString(R.string.aspirina)));
+        elementMedicines.add(new ListElementMedicine("AMBROXOL", "$50.00", "250 mg", getString(R.string.ambroxol)));
 
         listMedicineAdapter = new ListMedicineAdapter(elementMedicines, getContext());
         LinearLayoutManager li = new LinearLayoutManager(getActivity());
@@ -164,17 +167,79 @@ public class MedicineFragment extends Fragment implements View.OnClickListener {
                 Toast.makeText(getActivity().getApplicationContext(), "Escaneo cancelado", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(getActivity().getApplicationContext(), result.getContents(), Toast.LENGTH_SHORT).show();
+                barCode = result.getContents();
+                getListMedicinesBardCode();
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
+
+
+        super.onActivityResult(requestCode, resultCode, data);
     }
+
+
 
     private void getListMedicines(){
 
         MedicineService service = RetrofitRequest.create(MedicineService.class);
 
         Call<String> response = service.getMedicament(edtSearch.getText().toString().trim());
+
+        response.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if(response.code() != 200) {
+                    Toast.makeText( getActivity().getApplicationContext() , "Ocurrió un error\n " + response.code() + " " + response.message(), Toast.LENGTH_LONG ).show();
+                    return;
+                }
+                try {
+
+                    JSONArray jresponse = new JSONArray(response.body());
+
+
+                    final List<Medicament> lista = getListMedicines(jresponse);
+                    Log.i("List", "Break Point Here");
+
+                    if (lista.size() <= 0){
+                        Toast.makeText(getContext(), "No hay coincidencias", Toast.LENGTH_SHORT ).show();
+                        iconSearch.setEnabled(true);
+                        edtSearch.setEnabled(true);
+                        return;
+                    }
+
+                    elementMedicines.clear();
+
+                    for (Medicament m : lista) {
+                        elementMedicines.add(new ListElementMedicine(m.getNombre(),  m.getPrecio(), m.getComposicion(), m.getImagen()));
+                    }
+
+
+                    listMedicineAdapter = new ListMedicineAdapter(elementMedicines, getContext());
+                    recyclerView.setAdapter(listMedicineAdapter);
+
+                    iconSearch.setEnabled(true);
+                    edtSearch.setEnabled(true);
+
+                }catch (JSONException e){
+                    Log.i("TAG", e.getMessage());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                t.printStackTrace();
+                iconSearch.setEnabled(true);
+                edtSearch.setEnabled(true);
+            }
+        });
+    }
+
+    private void getListMedicinesBardCode(){
+
+        MedicineService service = RetrofitRequest.create(MedicineService.class);
+
+        Call<String> response = service.getMedicamentBarCode(barCode);
 
         response.enqueue(new Callback<String>() {
             @Override

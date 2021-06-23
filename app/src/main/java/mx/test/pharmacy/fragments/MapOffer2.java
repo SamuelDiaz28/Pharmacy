@@ -297,7 +297,7 @@ public class MapOffer2 extends Fragment implements OnMapReadyCallback, View.OnCl
     }
     public void toggleBottomSheet(){
 
-        View view = getLayoutInflater().inflate(R.layout.fragment_bottom_sheet, null);
+        View view = getLayoutInflater().inflate(R.layout.bottomsheet_layout, null);
         recyclerView = view.findViewById(R.id.recyclerView_bootomshet);
 
         BottomSheetDialog dialog = new BottomSheetDialog(getActivity());

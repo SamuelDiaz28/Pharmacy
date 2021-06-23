@@ -19,4 +19,7 @@ public interface MedicineService {
     @GET(APIUrl.GET_MEDICINES)
     Call<String> getMedicament(@Path("SearchWord") String searchWord);
 
+    @GET(APIUrl.GET_MEDICINES_BARCODE)
+    Call<String> getMedicamentBarCode(@Path("BarCode") String BarCode);
+
 }

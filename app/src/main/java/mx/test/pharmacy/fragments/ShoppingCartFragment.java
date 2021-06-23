@@ -32,7 +32,7 @@ import mx.test.pharmacy.roomData.entities.Medicines;
  */
 public class ShoppingCartFragment extends Fragment implements View.OnClickListener {
 
-    private List<ListElementMedicine> elementMedicines;
+    private List<Medicines> elementMedicines;
     private SearchView searchView = null;
     private ListShoppingCartAdapter listShoppingCartAdapter;
     private RecyclerView recyclerView;
@@ -97,9 +97,11 @@ public class ShoppingCartFragment extends Fragment implements View.OnClickListen
                 List<Medicines> medicinesList = AppDatabase.getInstance(getActivity().getApplicationContext()).medicinesDao().get();
 
                 if (medicinesList.size() != 0){
-                    for (Medicines medicine : medicinesList) {
+
+                    elementMedicines = medicinesList;
+                   /* for (Medicines medicine : medicinesList) {
                         elementMedicines.add(new ListElementMedicine(medicine.getName(), medicine.getCost(), medicine.getGrammage(), medicine.getImgMedicine()));
-                    }
+                    }*/
                     return true;
                 } else
                     return false;
