@@ -12,6 +12,21 @@ public class Medicament {
     public int idfarmacia;
     public String imagen;
 
+    public Medicament(){};
+
+    public Medicament(int idmedicamento, String nombre, String categoria, String ingredienteactivo, String formafarmaceutica, String composicion, String presentacion, String precio, int idfarmacia, String imagen) {
+        this.idmedicamento = idmedicamento;
+        this.nombre = nombre;
+        this.categoria = categoria;
+        this.ingredienteactivo = ingredienteactivo;
+        this.formafarmaceutica = formafarmaceutica;
+        this.composicion = composicion;
+        this.presentacion = presentacion;
+        this.precio = precio;
+        this.idfarmacia = idfarmacia;
+        this.imagen = imagen;
+    }
+
     public int getIdmedicamento() {
         return idmedicamento;
     }

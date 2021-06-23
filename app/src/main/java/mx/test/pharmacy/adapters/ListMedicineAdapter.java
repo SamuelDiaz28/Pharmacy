@@ -22,19 +22,20 @@ import java.util.stream.Collectors;
 
 import mx.test.pharmacy.R;
 import mx.test.pharmacy.models.ListElementMedicine;
+import mx.test.pharmacy.models.Medicament;
 import mx.test.pharmacy.roomData.AppDatabase;
 import mx.test.pharmacy.roomData.entities.Medicines;
 import mx.test.pharmacy.util.ComunMethod;
 
 public class ListMedicineAdapter extends RecyclerView.Adapter<ListMedicineAdapter.ViewHolder> {
 
-    private List<ListElementMedicine> mData;
+    private List<Medicament> mData;
     private List<ListElementMedicine> mDataOriginal;
     private LayoutInflater mInflater;
     private Context context;
     private ComunMethod comunMethod = new ComunMethod();
 
-    public ListMedicineAdapter(List<ListElementMedicine> itemList, Context context) {
+    public ListMedicineAdapter(List<Medicament> itemList, Context context) {
         this.mInflater = LayoutInflater.from(context);
         this.context = context;
         this.mData = itemList;
@@ -56,7 +57,7 @@ public class ListMedicineAdapter extends RecyclerView.Adapter<ListMedicineAdapte
         holder.bindData(mData.get(position));
     }
 
-    public void setItems(List<ListElementMedicine> items) {
+    public void setItems(List<Medicament> items) {
         mData = items;
     }
 
@@ -74,15 +75,15 @@ public class ListMedicineAdapter extends RecyclerView.Adapter<ListMedicineAdapte
 
         }
 
-        void bindData(final ListElementMedicine item) {
-            iconImage.setImageBitmap(comunMethod.getDecodedB64(item.getResourceImg()));
-            name.setText(item.getName());
-            cost.setText(item.getGrammage());
+        void bindData(final Medicament item) {
+            iconImage.setImageBitmap(comunMethod.getDecodedB64(item.getImagen()));
+            name.setText(item.getNombre());
+            cost.setText(item.getComposicion());
 
             iconCart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.i(">>Adapter<<", "Presiono el boton " + item.getName());
+
                     new SaveData().execute(item);
 
                 }
@@ -91,19 +92,25 @@ public class ListMedicineAdapter extends RecyclerView.Adapter<ListMedicineAdapte
     }
 
 
-    public class SaveData extends AsyncTask<ListElementMedicine, Void, Boolean> {
+    public class SaveData extends AsyncTask<Medicament, Void, Boolean> {
 
         @Override
-        protected Boolean doInBackground(ListElementMedicine... listElementMedicines) {
+        protected Boolean doInBackground(Medicament... medicaments) {
 
             try {
                 Medicines medicine = new Medicines();
 
-                medicine.setName(listElementMedicines[0].getName());
-                medicine.setCost(listElementMedicines[0].getCost());
-                medicine.setGrammage(listElementMedicines[0].getGrammage());
+                medicine.setIdMedicament(medicaments[0].getIdmedicamento());
+                medicine.setName(medicaments[0].getNombre());
+                medicine.setCategory(medicaments[0].getCategoria());
+                medicine.setActiveIngredient(medicaments[0].getIngredienteactivo());
+                medicine.setPharmaceuticalForm(medicaments[0].getFormafarmaceutica());
+                medicine.setCost(medicaments[0].getPrecio());
+                medicine.setGrammage(medicaments[0].getComposicion());
+                medicine.setPresentation(medicaments[0].getPresentacion());
+                medicine.setIdPharmacy(medicaments[0].getIdfarmacia());
 
-                medicine.setImgMedicine(listElementMedicines[0].getResourceImg());
+                medicine.setImgMedicine(medicaments[0].getImagen());
 
                 AppDatabase.getInstance(context).medicinesDao().insert(medicine);
 

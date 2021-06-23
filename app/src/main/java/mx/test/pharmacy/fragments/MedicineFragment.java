@@ -50,7 +50,7 @@ import retrofit2.Response;
 
 public class MedicineFragment extends Fragment implements View.OnClickListener {
 
-    private List<ListElementMedicine> elementMedicines;
+    private List<Medicament> elementMedicines;
     private SearchView searchView = null;
     private SearchView.OnQueryTextListener queryTextListener;
     private ListMedicineAdapter listMedicineAdapter;
@@ -86,9 +86,9 @@ public class MedicineFragment extends Fragment implements View.OnClickListener {
         iconScan.setOnClickListener(this);
 
         elementMedicines = new ArrayList<>();
-        elementMedicines.add(new ListElementMedicine("PARACETAMOL", "200.00", "500 mg", getString(R.string.paracetamol)));
-        elementMedicines.add(new ListElementMedicine("ASPIRINA", "100.00", "500 mg", getString(R.string.aspirina)));
-        elementMedicines.add(new ListElementMedicine("AMBROXOL", "50.00", "250 mg", getString(R.string.ambroxol)));
+        elementMedicines.add(new Medicament(1,"PARACETAMOL", "Adulto", "Paracetamol", "3", "500 mg",  "Tabletas", "100.00", 3, getString(R.string.paracetamol)));
+        elementMedicines.add(new Medicament(2, "ASPIRINA", "Adulto", "","3", "300 mg", "Tabletas", "200.00", 4, getString(R.string.aspirina)));
+        elementMedicines.add(new Medicament(3,"AMBROXOL", "Adulto", "", "4", "250 mgg", "Jarabe", "50.00", 5, getString(R.string.ambroxol)));
 
         listMedicineAdapter = new ListMedicineAdapter(elementMedicines, getContext());
         LinearLayoutManager li = new LinearLayoutManager(getActivity());
@@ -211,7 +211,7 @@ public class MedicineFragment extends Fragment implements View.OnClickListener {
                     elementMedicines.clear();
 
                     for (Medicament m : lista) {
-                        elementMedicines.add(new ListElementMedicine(m.getNombre(),  m.getPrecio(), m.getComposicion(), m.getImagen()));
+                        elementMedicines.add(new Medicament(m.getIdmedicamento(), m.getNombre(), m.getCategoria(), m.getIngredienteactivo(), m.getFormafarmaceutica(), m.getComposicion(), m.getPresentacion(), m.getPrecio(), m.getIdfarmacia(), m.getImagen()));
                     }
 
 
@@ -266,7 +266,7 @@ public class MedicineFragment extends Fragment implements View.OnClickListener {
                     elementMedicines.clear();
 
                     for (Medicament m : lista) {
-                        elementMedicines.add(new ListElementMedicine(m.getNombre(),  m.getPrecio(), m.getComposicion(), m.getImagen()));
+                        elementMedicines.add(new Medicament(m.getIdmedicamento(), m.getNombre(), m.getCategoria(), m.getIngredienteactivo(), m.getFormafarmaceutica(), m.getComposicion(), m.getPresentacion(), m.getPrecio(), m.getIdfarmacia(), m.getImagen()));
                     }
 
 
