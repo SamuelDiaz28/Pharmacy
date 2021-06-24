@@ -21,6 +21,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.io.ByteArrayOutputStream;
 import java.lang.reflect.Array;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -265,13 +266,17 @@ public class ComunMethod{
                         /*((TextView) view.findViewById(R.id.telefono)).setText(comUsuario.telefono);
                         ((TextView) view.findViewById(R.id.direccion)).setText(comUsuario.direccion);*/
 
+                        DecimalFormat dc = new DecimalFormat(".00");
                         double subtotal = 0;
                         double total = 0;
+
+
+
 
                         for (ListMedicamentoShow listMedicamentoShow : comUsuario.listMedicamentoShows){
                             total += Double.parseDouble(listMedicamentoShow.precio);
                         }
-                        ((TextView) view.findViewById(R.id.txtTotal)).setText("$ " + String.valueOf(total));
+                        ((TextView) view.findViewById(R.id.txtTotal)).setText("$ " + dc.format(total));
 
 
                         //total = subtotal;
@@ -302,20 +307,21 @@ public class ComunMethod{
                         ((TextView) view.findViewById(R.id.txtTitle)).setText(comUsuario.farmacia);
                         /*((TextView) view.findViewById(R.id.telefono)).setText(comUsuario.telefono);
                         ((TextView) view.findViewById(R.id.direccion)).setText(comUsuario.direccion);*/
+                        DecimalFormat dc = new DecimalFormat(".00");
                         double total = 0;
 
                         for (ListMedicamentoShow listMedicamentoShow : comUsuario.listMedicamentoShows){
                             total += Double.parseDouble(listMedicamentoShow.precio);
 
                         }
-                        ((TextView) view.findViewById(R.id.txtTotal)).setText("$ " + String.valueOf(total));
+                        ((TextView) view.findViewById(R.id.txtTotal)).setText("$ " + dc.format(total));
 
                         listMedicamentoShows = comUsuario.listMedicamentoShows;
                         ListProductosCompraAdapter listProductosCompraAdapter = new ListProductosCompraAdapter(listMedicamentoShows,activity);
                         LinearLayoutManager li = new LinearLayoutManager(activity.getApplicationContext());
                         li.setOrientation(LinearLayoutManager.VERTICAL);
 
-                        recyclerView.setHasFixedSize(true);
+
                         recyclerView.setLayoutManager(li);
                         recyclerView.setAdapter(listProductosCompraAdapter);
 
@@ -334,13 +340,15 @@ public class ComunMethod{
                         /*((TextView) view.findViewById(R.id.telefono)).setText(comUsuario.telefono);
                         ((TextView) view.findViewById(R.id.direccion)).setText(comUsuario.direccion);*/
                         //((TextView) view.findViewById(R.id.subtotal)).setText(comUsuario.subtotal);
+                        DecimalFormat dc = new DecimalFormat(".00");
+
                         double total = 0;
 
                         for (ListMedicamentoShow listMedicamentoShow : comUsuario.listMedicamentoShows){
                             total += Double.parseDouble(listMedicamentoShow.precio);
 
                         }
-                        ((TextView) view.findViewById(R.id.txtTotal)).setText("$ " + String.valueOf(total));
+                        ((TextView) view.findViewById(R.id.txtTotal)).setText("$ " + dc.format(total));
 
                         listMedicamentoShows= comUsuario.listMedicamentoShows;
                         ListProductosCompraAdapter listProductosCompraAdapter = new ListProductosCompraAdapter(listMedicamentoShows,activity);
@@ -366,13 +374,14 @@ public class ComunMethod{
                         /*((TextView) view.findViewById(R.id.telefono)).setText(comUsuario.telefono);
                         ((TextView) view.findViewById(R.id.direccion)).setText(comUsuario.direccion);*/
                         //((TextView) view.findViewById(R.id.subtotal)).setText(comUsuario.subtotal);
+                        DecimalFormat dc = new DecimalFormat(".00");
                         double total = 0;
 
                         for (ListMedicamentoShow listMedicamentoShow : comUsuario.listMedicamentoShows){
                             total += Double.parseDouble(listMedicamentoShow.precio);
 
                         }
-                        ((TextView) view.findViewById(R.id.txtTotal)).setText("$ " +  String.valueOf(total));
+                        ((TextView) view.findViewById(R.id.txtTotal)).setText("$ " +  dc.format(total));
 
                         listMedicamentoShows = comUsuario.listMedicamentoShows;
                         ListProductosCompraAdapter listProductosCompraAdapter = new ListProductosCompraAdapter(listMedicamentoShows,activity);
@@ -398,13 +407,14 @@ public class ComunMethod{
                         /*((TextView) view.findViewById(R.id.telefono)).setText(comUsuario.telefono);
                         ((TextView) view.findViewById(R.id.direccion)).setText(comUsuario.direccion);*/
                         //((TextView) view.findViewById(R.id.subtotal)).setText(comUsuario.subtotal);
+                        DecimalFormat dc = new DecimalFormat(".00");
                         double total = 0;
 
                         for (ListMedicamentoShow listMedicamentoShow : comUsuario.listMedicamentoShows){
                             total += Double.parseDouble(listMedicamentoShow.precio);
 
                         }
-                        ((TextView) view.findViewById(R.id.txtTotal)).setText("$ " + String.valueOf(total));
+                        ((TextView) view.findViewById(R.id.txtTotal)).setText("$ " + dc.format(total));
 
                         listMedicamentoShows = comUsuario.listMedicamentoShows;
                         ListProductosCompraAdapter listProductosCompraAdapter = new ListProductosCompraAdapter(listMedicamentoShows,activity);

@@ -57,9 +57,9 @@ public class ListFarmaciaPrecDistAdapter extends RecyclerView.Adapter<ListFarmac
         ViewHolder(View itemView) {
             super(itemView);
 
-            farmacia = itemView.findViewById(R.id.txtName1);
-            total = itemView.findViewById(R.id.txtCost);
-            distancia = itemView.findViewById(R.id.txtKlm);
+            farmacia = itemView.findViewById(R.id.txtNamePharmacy2);
+            total = itemView.findViewById(R.id.txtTotalPharmacy2);
+            distancia = itemView.findViewById(R.id.txtDistancePharmacy2);
             //btn = itemView.findViewById(R.id.shetbotompagar);
         }
 

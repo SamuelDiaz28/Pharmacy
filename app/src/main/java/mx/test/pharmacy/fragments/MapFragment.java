@@ -413,8 +413,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
 
     private void showList(){
         listFarmaciaPrecDistAdapter = new ListFarmaciaPrecDistAdapter(elementMedicines, getContext());
-        LinearLayoutManager li = new LinearLayoutManager(getContext());
-        li.setOrientation(LinearLayoutManager.VERTICAL);
+        LinearLayoutManager li = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(li);
