@@ -274,7 +274,9 @@ public class ComunMethod{
 
 
                         for (ListMedicamentoShow listMedicamentoShow : comUsuario.listMedicamentoShows){
-                            total += Double.parseDouble(listMedicamentoShow.precio);
+                            if (listMedicamentoShow.estatus !="No disponible"){
+                                total += Double.parseDouble(listMedicamentoShow.precio);
+                            }
                         }
                         ((TextView) view.findViewById(R.id.txtTotal)).setText("$ " + dc.format(total));
 
@@ -311,8 +313,9 @@ public class ComunMethod{
                         double total = 0;
 
                         for (ListMedicamentoShow listMedicamentoShow : comUsuario.listMedicamentoShows){
-                            total += Double.parseDouble(listMedicamentoShow.precio);
-
+                            if (listMedicamentoShow.estatus !="No disponible"){
+                                total += Double.parseDouble(listMedicamentoShow.precio);
+                            }
                         }
                         ((TextView) view.findViewById(R.id.txtTotal)).setText("$ " + dc.format(total));
 
@@ -345,7 +348,9 @@ public class ComunMethod{
                         double total = 0;
 
                         for (ListMedicamentoShow listMedicamentoShow : comUsuario.listMedicamentoShows){
-                            total += Double.parseDouble(listMedicamentoShow.precio);
+                            if (listMedicamentoShow.estatus !="No disponible"){
+                                total += Double.parseDouble(listMedicamentoShow.precio);
+                            }
 
                         }
                         ((TextView) view.findViewById(R.id.txtTotal)).setText("$ " + dc.format(total));
@@ -378,7 +383,9 @@ public class ComunMethod{
                         double total = 0;
 
                         for (ListMedicamentoShow listMedicamentoShow : comUsuario.listMedicamentoShows){
-                            total += Double.parseDouble(listMedicamentoShow.precio);
+                            if (listMedicamentoShow.estatus !="No disponible"){
+                                total += Double.parseDouble(listMedicamentoShow.precio);
+                            }
 
                         }
                         ((TextView) view.findViewById(R.id.txtTotal)).setText("$ " +  dc.format(total));
@@ -411,7 +418,9 @@ public class ComunMethod{
                         double total = 0;
 
                         for (ListMedicamentoShow listMedicamentoShow : comUsuario.listMedicamentoShows){
-                            total += Double.parseDouble(listMedicamentoShow.precio);
+                            if (listMedicamentoShow.estatus !="No disponible"){
+                                total += Double.parseDouble(listMedicamentoShow.precio);
+                            }
 
                         }
                         ((TextView) view.findViewById(R.id.txtTotal)).setText("$ " + dc.format(total));
