@@ -342,9 +342,9 @@ public class MapOffer2 extends Fragment implements OnMapReadyCallback, View.OnCl
     }
 
     private void CargarMedicamentos(){
-        listMedicamentoShows.add(new ListMedicamentoShow("Pirquet","Adulto","Fexofenadina","Tabletas","180 mg","10 Tabletas(1 caja)","209.50",pirquet));
-        listMedicamentoShows.add(new ListMedicamentoShow("Buscapina","Adulto","Hioscina/Metamizol","Tabletas","10 mg/250 mg","24 Tabletas","358.00",buscapina));
-        listMedicamentoShows.add(new ListMedicamentoShow("Arcoxia","Adulto","Etoricoxib","Tabletas","90 mg","28 Tabletas","1829.00",arcoxia));
+        listMedicamentoShows.add(new ListMedicamentoShow("Pirquet","Adulto","Fexofenadina","Tabletas","180 mg","10 Tabletas(1 caja)","209.50",pirquet, ""));
+        listMedicamentoShows.add(new ListMedicamentoShow("Buscapina","Adulto","Hioscina/Metamizol","Tabletas","10 mg/250 mg","24 Tabletas","358.00",buscapina, ""));
+        listMedicamentoShows.add(new ListMedicamentoShow("Arcoxia","Adulto","Etoricoxib","Tabletas","90 mg","28 Tabletas","1829.00",arcoxia, ""));
         //listMedicamentoShows.add(new ListMedicamentoShow("Colchicina Aurax","Adulto","Colchicina","Tabletas","1 mg","30 Tabletas","51.50"));
         //listMedicamentoShows.add(new ListMedicamentoShow("Melatonina Aurax","Adulto","Melatonina","Tabletas","5 mg","20 Tabletas","144.00"));
     }

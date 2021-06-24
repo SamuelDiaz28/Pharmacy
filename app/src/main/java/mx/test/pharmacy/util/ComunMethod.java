@@ -245,6 +245,207 @@ public class ComunMethod{
 
     }
 
+    public static void showDialogPharmacy(String id, List<ListCompraUsuario> listCompraUsuarios, Context activity){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity, R.style.AlertDialogTheme);
+        View view = LayoutInflater.from(activity).inflate(R.layout.layout_dialog_pharmacy,null);
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerViewDialog);
+
+        List<ListMedicamentoShow> listMedicamentoShows = new ArrayList();
+
+        switch (id){
+            case "Farmacia Ahora":
+
+                for (ListCompraUsuario comUsuario : listCompraUsuarios){
+
+                    if (comUsuario.farmacia=="Farmacia Ahora"){
+
+                        builder.setView(view);
+                        ((TextView) view.findViewById(R.id.txtTitle)).setText(comUsuario.farmacia);
+                        /*((TextView) view.findViewById(R.id.telefono)).setText(comUsuario.telefono);
+                        ((TextView) view.findViewById(R.id.direccion)).setText(comUsuario.direccion);*/
+
+                        double subtotal = 0;
+                        double total = 0;
+
+                        for (ListMedicamentoShow listMedicamentoShow : comUsuario.listMedicamentoShows){
+                            total += Double.parseDouble(listMedicamentoShow.precio);
+                        }
+                        ((TextView) view.findViewById(R.id.txtTotal)).setText("$ " + String.valueOf(total));
+
+
+                        //total = subtotal;
+
+                        listMedicamentoShows = comUsuario.listMedicamentoShows;
+                        ListProductosCompraAdapter listProductosCompraAdapter = new ListProductosCompraAdapter(listMedicamentoShows,activity);
+                        LinearLayoutManager li = new LinearLayoutManager(activity.getApplicationContext());
+                        li.setOrientation(LinearLayoutManager.VERTICAL);
+
+
+                        //((TextView) view.findViewById(R.id.subtotal)).setText(String.valueOf(subtotal));
+
+                        recyclerView.setHasFixedSize(true);
+                        recyclerView.setLayoutManager(li);
+                        recyclerView.setAdapter(listProductosCompraAdapter);
+
+
+                    }
+                }
+                break;
+
+            case "Farmacia Esp":
+                for (ListCompraUsuario comUsuario : listCompraUsuarios){
+
+                    if (comUsuario.farmacia=="Farmacia Esp"){
+
+                        builder.setView(view);
+                        ((TextView) view.findViewById(R.id.txtTitle)).setText(comUsuario.farmacia);
+                        /*((TextView) view.findViewById(R.id.telefono)).setText(comUsuario.telefono);
+                        ((TextView) view.findViewById(R.id.direccion)).setText(comUsuario.direccion);*/
+                        double total = 0;
+
+                        for (ListMedicamentoShow listMedicamentoShow : comUsuario.listMedicamentoShows){
+                            total += Double.parseDouble(listMedicamentoShow.precio);
+
+                        }
+                        ((TextView) view.findViewById(R.id.txtTotal)).setText("$ " + String.valueOf(total));
+
+                        listMedicamentoShows = comUsuario.listMedicamentoShows;
+                        ListProductosCompraAdapter listProductosCompraAdapter = new ListProductosCompraAdapter(listMedicamentoShows,activity);
+                        LinearLayoutManager li = new LinearLayoutManager(activity.getApplicationContext());
+                        li.setOrientation(LinearLayoutManager.VERTICAL);
+
+                        recyclerView.setHasFixedSize(true);
+                        recyclerView.setLayoutManager(li);
+                        recyclerView.setAdapter(listProductosCompraAdapter);
+
+
+                    }
+                }
+                break;
+
+            case "Farmacia San-Pa":
+                for (ListCompraUsuario comUsuario : listCompraUsuarios){
+
+                    if (comUsuario.farmacia=="Farmacia San-Pa"){
+
+                        builder.setView(view);
+                        ((TextView) view.findViewById(R.id.txtTitle)).setText(comUsuario.farmacia);
+                        /*((TextView) view.findViewById(R.id.telefono)).setText(comUsuario.telefono);
+                        ((TextView) view.findViewById(R.id.direccion)).setText(comUsuario.direccion);*/
+                        //((TextView) view.findViewById(R.id.subtotal)).setText(comUsuario.subtotal);
+                        double total = 0;
+
+                        for (ListMedicamentoShow listMedicamentoShow : comUsuario.listMedicamentoShows){
+                            total += Double.parseDouble(listMedicamentoShow.precio);
+
+                        }
+                        ((TextView) view.findViewById(R.id.txtTotal)).setText("$ " + String.valueOf(total));
+
+                        listMedicamentoShows= comUsuario.listMedicamentoShows;
+                        ListProductosCompraAdapter listProductosCompraAdapter = new ListProductosCompraAdapter(listMedicamentoShows,activity);
+                        LinearLayoutManager li = new LinearLayoutManager(activity.getApplicationContext());
+                        li.setOrientation(LinearLayoutManager.VERTICAL);
+
+                        recyclerView.setHasFixedSize(true);
+                        recyclerView.setLayoutManager(li);
+                        recyclerView.setAdapter(listProductosCompraAdapter);
+
+
+                    }
+                }
+                break;
+
+            case "Farmacia Walwart":
+                for (ListCompraUsuario comUsuario : listCompraUsuarios){
+
+                    if (comUsuario.farmacia=="Farmacia Walwart"){
+
+                        builder.setView(view);
+                        ((TextView) view.findViewById(R.id.txtTitle)).setText(comUsuario.farmacia);
+                        /*((TextView) view.findViewById(R.id.telefono)).setText(comUsuario.telefono);
+                        ((TextView) view.findViewById(R.id.direccion)).setText(comUsuario.direccion);*/
+                        //((TextView) view.findViewById(R.id.subtotal)).setText(comUsuario.subtotal);
+                        double total = 0;
+
+                        for (ListMedicamentoShow listMedicamentoShow : comUsuario.listMedicamentoShows){
+                            total += Double.parseDouble(listMedicamentoShow.precio);
+
+                        }
+                        ((TextView) view.findViewById(R.id.txtTotal)).setText("$ " +  String.valueOf(total));
+
+                        listMedicamentoShows = comUsuario.listMedicamentoShows;
+                        ListProductosCompraAdapter listProductosCompraAdapter = new ListProductosCompraAdapter(listMedicamentoShows,activity);
+                        LinearLayoutManager li = new LinearLayoutManager(activity.getApplicationContext());
+                        li.setOrientation(LinearLayoutManager.VERTICAL);
+
+                        recyclerView.setHasFixedSize(true);
+                        recyclerView.setLayoutManager(li);
+                        recyclerView.setAdapter(listProductosCompraAdapter);
+
+
+                    }
+                }
+                break;
+
+            case "Farmacia Gua":
+                for (ListCompraUsuario comUsuario : listCompraUsuarios){
+
+                    if (comUsuario.farmacia=="Farmacia Gua"){
+
+                        builder.setView(view);
+                        ((TextView) view.findViewById(R.id.txtTitle)).setText(comUsuario.farmacia);
+                        /*((TextView) view.findViewById(R.id.telefono)).setText(comUsuario.telefono);
+                        ((TextView) view.findViewById(R.id.direccion)).setText(comUsuario.direccion);*/
+                        //((TextView) view.findViewById(R.id.subtotal)).setText(comUsuario.subtotal);
+                        double total = 0;
+
+                        for (ListMedicamentoShow listMedicamentoShow : comUsuario.listMedicamentoShows){
+                            total += Double.parseDouble(listMedicamentoShow.precio);
+
+                        }
+                        ((TextView) view.findViewById(R.id.txtTotal)).setText("$ " + String.valueOf(total));
+
+                        listMedicamentoShows = comUsuario.listMedicamentoShows;
+                        ListProductosCompraAdapter listProductosCompraAdapter = new ListProductosCompraAdapter(listMedicamentoShows,activity);
+                        LinearLayoutManager li = new LinearLayoutManager(activity.getApplicationContext());
+                        li.setOrientation(LinearLayoutManager.VERTICAL);
+
+                        recyclerView.setHasFixedSize(true);
+                        recyclerView.setLayoutManager(li);
+                        recyclerView.setAdapter(listProductosCompraAdapter);
+
+
+                    }
+                }
+                break;
+
+        }
+
+        AlertDialog alertDialog = builder.create();
+        view.findViewById(R.id.btnAction).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+                showEnvioDialog((Activity) activity);
+            }
+        });
+
+        view.findViewById(R.id.imgIcon).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
+        if (alertDialog.getWindow() != null) {
+            alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+        }
+
+
+        alertDialog.show();
+
+    }
+
     public static void showSuccessDialog(String titulo, String telefono, String precio, String descripcion, Context activity){
 
         AlertDialog.Builder builder = new AlertDialog.Builder(activity, R.style.AlertDialogTheme);
@@ -274,6 +475,7 @@ public class ComunMethod{
                 alertDialog.dismiss();
             }
         });
+
         if (alertDialog.getWindow() != null) {
             alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
         }

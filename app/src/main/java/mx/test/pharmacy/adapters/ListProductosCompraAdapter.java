@@ -35,7 +35,7 @@ public class ListProductosCompraAdapter extends RecyclerView.Adapter<ListProduct
 
     @Override
     public ListProductosCompraAdapter.ViewHolder onCreateViewHolder( ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.list_medicines_buy,null);
+        View view = mInflater.inflate(R.layout.list_medicine_dialog_pharmacy,null);
         return new ListProductosCompraAdapter.ViewHolder(view);
     }
 
@@ -48,31 +48,50 @@ public class ListProductosCompraAdapter extends RecyclerView.Adapter<ListProduct
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView nomMed, ingrdntActv, composicion, formaFarma, categoria,presentacion,precio;
+        /*TextView nomMed, ingrdntActv, composicion, formaFarma, categoria,presentacion,precio;
+        ImageView img;*/
+
+        TextView name, activeIngredient, cost, grammage, status;
         ImageView img;
 
         ViewHolder(View itemView) {
             super(itemView);
 
-            nomMed = itemView.findViewById(R.id.txtNomMed);
+           /* nomMed = itemView.findViewById(R.id.txtNomMed);
             ingrdntActv = itemView.findViewById(R.id.txtingrdntActv);
             composicion = itemView.findViewById(R.id.txtComposicion);
             formaFarma = itemView.findViewById(R.id.txtformaFarmaceutica);
             categoria = itemView.findViewById(R.id.txtCategoria);
             presentacion = itemView.findViewById(R.id.txtPresentacion);
             precio = itemView.findViewById(R.id.txtPrecio);
-            img = itemView.findViewById(R.id.icImageView_buy);
+            img = itemView.findViewById(R.id.icImageView_buy);*/
+
+            name = itemView.findViewById(R.id.txtName);
+            activeIngredient = itemView.findViewById(R.id.txtActiveIngredient);
+            grammage = itemView.findViewById(R.id.txtGrammage);
+            cost = itemView.findViewById(R.id.txtCost);
+            status = itemView.findViewById(R.id.txtStatus);
+
+            img = itemView.findViewById(R.id.icImageView);
 
         }
 
         void binData(final ListMedicamentoShow item){
-            nomMed.setText(item.getNombreMedicamento());
+
+            /*nomMed.setText(item.getNombreMedicamento());
             ingrdntActv.setText(item.getIngredienteActivo());
             composicion.setText(item.getComposicion());
             formaFarma.setText(item.getFormaFarmaceutica());
             categoria.setText(item.getCategoria());
             presentacion.setText(item.getPresentacion());
             precio.setText("$"+item.getPrecio());
+            img.setImageBitmap(ComunMethod.getDecodedB642(item.img));*/
+
+            name.setText(item.getNombreMedicamento());
+            activeIngredient.setText(item.getIngredienteActivo());
+            grammage.setText(item.getComposicion());
+            cost.setText(item.getPrecio());
+            status.setText(item.getEstatus());
             img.setImageBitmap(ComunMethod.getDecodedB642(item.img));
 
         }

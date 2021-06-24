@@ -20,4 +20,6 @@
     <color name="color_amarillo_bajo">#F3D878</color>
     <color name="color_verde">#4AA344</color>
     <color name="color_verde_aceptado">#2FAF83</color>
+
+    <color name="color_error">#e63946</color>
 </resources>

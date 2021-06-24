@@ -363,7 +363,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
                 String precio ="$90";
 
                 cargarListaUsuarioPrecargado();
-                ComunMethod.showSuccessDialogShow(titulo,listCompraUsuarios, getActivity());
+                ComunMethod.showDialogPharmacy(titulo,listCompraUsuarios, getActivity());
+                //ComunMethod.showSuccessDialogShow(titulo,listCompraUsuarios, getActivity());
 
             }
 
@@ -446,11 +447,11 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
     }
 
     private void CargarMedicamentos(){
-        listMedicamentoShowsPrecargados.add(new ListMedicamentoShow("Pirquet","Adulto","Fexofenadina","Tabletas","180 mg","10 Tabletas(1 caja)","209.50",pirquet));
-        listMedicamentoShowsPrecargados.add(new ListMedicamentoShow("Buscapina","Adulto","Hioscina/Metamizol","Tabletas","10 mg/250 mg","24 Tabletas","358.00",buscapina));
-        listMedicamentoShowsPrecargados.add(new ListMedicamentoShow("Arcoxia","Adulto","Etoricoxib","Tabletas","90 mg","28 Tabletas","1829.00",arcoxia));
-        listMedicamentoShowsPrecargados.add(new ListMedicamentoShow("Colchicina Aurax","Adulto","Colchicina","Tabletas","1 mg","30 Tabletas","51.50",colchicinaAurax));
-        listMedicamentoShowsPrecargados.add(new ListMedicamentoShow("Melatonina Aurax","Adulto","Melatonina","Tabletas","5 mg","20 Tabletas","144.00",melatoninaAurax));
+        listMedicamentoShowsPrecargados.add(new ListMedicamentoShow("Pirquet","Adulto","Fexofenadina","Tabletas","180 mg","10 Tabletas(1 caja)","209.50",pirquet, "No disponible"));
+        listMedicamentoShowsPrecargados.add(new ListMedicamentoShow("Buscapina","Adulto","Hioscina","Tabletas","10 mg/250 mg","24 Tabletas","358.00",buscapina, ""));
+        listMedicamentoShowsPrecargados.add(new ListMedicamentoShow("Arcoxia","Adulto","Etoricoxib","Tabletas","90 mg","28 Tabletas","1829.00",arcoxia, ""));
+        listMedicamentoShowsPrecargados.add(new ListMedicamentoShow("Colchicina Aurax","Adulto","Colchicina","Tabletas","1 mg","30 Tabletas","51.50",colchicinaAurax, ""));
+        listMedicamentoShowsPrecargados.add(new ListMedicamentoShow("Melatonina Aurax","Adulto","Melatonina","Tabletas","5 mg","20 Tabletas","144.00",melatoninaAurax, "No disponible"));
     }
 
     public class GetData extends AsyncTask<Void, Void, Boolean> {
@@ -462,7 +463,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
                 List<Medicines> medicinesList = AppDatabase.getInstance(getActivity().getApplicationContext()).medicinesDao().get();
 
                 for (Medicines medicine : medicinesList) {
-                    listMedicamentoShows.add(new ListMedicamentoShow(medicine.getName(),"Adulto","","",medicine.getGrammage(),"",medicine.getCost(),medicine.getImgMedicine()));
+                    listMedicamentoShows.add(new ListMedicamentoShow(medicine.getName(),"Adulto","","",medicine.getGrammage(),"",medicine.getCost(),medicine.getImgMedicine(), ""));
                 }
 
 
