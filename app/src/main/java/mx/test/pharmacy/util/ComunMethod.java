@@ -61,8 +61,8 @@ public class ComunMethod{
 
                         builder.setView(view);
                         ((TextView) view.findViewById(R.id.titulo)).setText(comUsuario.farmacia);
-                        ((TextView) view.findViewById(R.id.telefono)).setText(comUsuario.telefono);
-                        ((TextView) view.findViewById(R.id.direccion)).setText(comUsuario.direccion);
+                        //((TextView) view.findViewById(R.id.telefono)).setText(comUsuario.telefono);
+                        //((TextView) view.findViewById(R.id.direccion)).setText(comUsuario.direccion);
 
                         double subtotal = 0;
                         double total = 0;
@@ -100,8 +100,8 @@ public class ComunMethod{
 
                         builder.setView(view);
                         ((TextView) view.findViewById(R.id.titulo)).setText(comUsuario.farmacia);
-                        ((TextView) view.findViewById(R.id.telefono)).setText(comUsuario.telefono);
-                        ((TextView) view.findViewById(R.id.direccion)).setText(comUsuario.direccion);
+                        //((TextView) view.findViewById(R.id.telefono)).setText(comUsuario.telefono);
+                        //((TextView) view.findViewById(R.id.direccion)).setText(comUsuario.direccion);
                         double total = 0;
 
                         for (ListMedicamentoShow listMedicamentoShow : comUsuario.listMedicamentoShows){
@@ -131,8 +131,8 @@ public class ComunMethod{
 
                         builder.setView(view);
                         ((TextView) view.findViewById(R.id.titulo)).setText(comUsuario.farmacia);
-                        ((TextView) view.findViewById(R.id.telefono)).setText(comUsuario.telefono);
-                        ((TextView) view.findViewById(R.id.direccion)).setText(comUsuario.direccion);
+                        //((TextView) view.findViewById(R.id.telefono)).setText(comUsuario.telefono);
+                        //((TextView) view.findViewById(R.id.direccion)).setText(comUsuario.direccion);
                         //((TextView) view.findViewById(R.id.subtotal)).setText(comUsuario.subtotal);
                         double total = 0;
 
@@ -163,8 +163,8 @@ public class ComunMethod{
 
                         builder.setView(view);
                         ((TextView) view.findViewById(R.id.titulo)).setText(comUsuario.farmacia);
-                        ((TextView) view.findViewById(R.id.telefono)).setText(comUsuario.telefono);
-                        ((TextView) view.findViewById(R.id.direccion)).setText(comUsuario.direccion);
+                        //((TextView) view.findViewById(R.id.telefono)).setText(comUsuario.telefono);
+                        //((TextView) view.findViewById(R.id.direccion)).setText(comUsuario.direccion);
                         //((TextView) view.findViewById(R.id.subtotal)).setText(comUsuario.subtotal);
                         double total = 0;
 
@@ -195,8 +195,8 @@ public class ComunMethod{
 
                         builder.setView(view);
                         ((TextView) view.findViewById(R.id.titulo)).setText(comUsuario.farmacia);
-                        ((TextView) view.findViewById(R.id.telefono)).setText(comUsuario.telefono);
-                        ((TextView) view.findViewById(R.id.direccion)).setText(comUsuario.direccion);
+                        //((TextView) view.findViewById(R.id.telefono)).setText(comUsuario.telefono);
+                        //((TextView) view.findViewById(R.id.direccion)).setText(comUsuario.direccion);
                         //((TextView) view.findViewById(R.id.subtotal)).setText(comUsuario.subtotal);
                         double total = 0;
 
@@ -321,7 +321,7 @@ public class ComunMethod{
                         LinearLayoutManager li = new LinearLayoutManager(activity.getApplicationContext());
                         li.setOrientation(LinearLayoutManager.VERTICAL);
 
-
+                        recyclerView.setHasFixedSize(true);
                         recyclerView.setLayoutManager(li);
                         recyclerView.setAdapter(listProductosCompraAdapter);
 

@@ -90,7 +90,7 @@ public class ListProductosCompraAdapter extends RecyclerView.Adapter<ListProduct
             name.setText(item.getNombreMedicamento());
             activeIngredient.setText(item.getIngredienteActivo());
             grammage.setText(item.getComposicion());
-            cost.setText(item.getPrecio());
+            cost.setText("$"+item.getPrecio());
             status.setText(item.getEstatus());
             img.setImageBitmap(ComunMethod.getDecodedB642(item.img));
 

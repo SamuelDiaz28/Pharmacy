@@ -231,20 +231,7 @@ public class MapOffer2 extends Fragment implements OnMapReadyCallback, View.OnCl
                 .snippet("Precio: 60.00 "+"\n"+"Tiempo de Entrega: 55 min")
                 .icon(BitmapDescriptorFactory.fromBitmap(smallMarker1)));
 
-        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-            @Override
-            public boolean onMarkerClick(@NonNull Marker marker) {
 
-                //Mandamos a traer el boottomSheet
-                //toggleBottomSheet();
-                if (marker.isInfoWindowShown()) {
-                    marker.hideInfoWindow();
-                } else {
-                    marker.showInfoWindow();
-                }
-                return true;
-            }
-        });
         mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
 
             @Override
@@ -271,7 +258,7 @@ public class MapOffer2 extends Fragment implements OnMapReadyCallback, View.OnCl
                 return info;
             }
         });
-        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+        /*mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override
             public void onInfoWindowClick(Marker arg0) {
                 // TODO Auto-generated method stub
@@ -281,7 +268,7 @@ public class MapOffer2 extends Fragment implements OnMapReadyCallback, View.OnCl
 
             }
 
-        });
+        });*/
     }
 
     private void zoomToLocation(Location location){

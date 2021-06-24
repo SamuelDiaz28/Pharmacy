@@ -285,7 +285,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
                 .title("Farmacia San-Pa")
                 .snippet("Distancia: 1.8 km")
                 .icon(BitmapDescriptorFactory.fromBitmap(smallMarker2)));
-                //.showInfoWindow();
+        //.showInfoWindow();
 
         Marker farmaWalwart = mMap.addMarker(new MarkerOptions()
                 .position(farma3)
@@ -463,7 +463,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
                 List<Medicines> medicinesList = AppDatabase.getInstance(getActivity().getApplicationContext()).medicinesDao().get();
 
                 for (Medicines medicine : medicinesList) {
-                    listMedicamentoShows.add(new ListMedicamentoShow(medicine.getName(),"Adulto","","",medicine.getGrammage(),"",medicine.getCost(),medicine.getImgMedicine(), ""));
+                    listMedicamentoShows.add(new ListMedicamentoShow(medicine.getName(),medicine.getCategory(),medicine.getActiveIngredient(),medicine.getPharmaceuticalForm(),medicine.getGrammage(),"",medicine.getCost(),medicine.getImgMedicine(), ""));
                 }
 
 
