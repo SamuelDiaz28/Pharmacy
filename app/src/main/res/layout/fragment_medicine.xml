@@ -30,9 +30,10 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:layout_width="150dp"
+                android:layout_width="160dp"
                 android:layout_height="40dp"
                 android:adjustViewBounds="true"
+                android:src="@drawable/logotipo_gris"
                 app:layout_constraintBottom_toBottomOf="@+id/imageMenu"
                 app:layout_constraintTop_toTopOf="@+id/imageMenu"
                 app:layout_constraintStart_toEndOf="@+id/imageMenu"
@@ -138,8 +139,7 @@
                         app:layout_constraintBottom_toBottomOf="@id/ofertas"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/ofertas"
-                        android:adjustViewBounds="true"
-                        />
+                        android:adjustViewBounds="true" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -157,17 +157,10 @@
                         app:layout_constraintBottom_toBottomOf="@id/ofertas2"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/ofertas2"
-                        android:adjustViewBounds="true"
-                        />
+                        android:adjustViewBounds="true" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
             </LinearLayout>
         </ScrollView>
-
-
-
-
     </RelativeLayout>
-
 </FrameLayout>

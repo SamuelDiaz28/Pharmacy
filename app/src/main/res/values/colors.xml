@@ -8,7 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="colorPrimary">#92d050</color>
+    <color name="colorPrimary">#8ad147</color>
     <color name="colorPrimaryDark">#92d050</color>
     <color name="colorAccent">#666666</color>
     <color name="colorPrimaryLight">#E9F8F1</color>
@@ -17,9 +17,11 @@
     <color name="colorTrendingEnd">#96C93D</color>
     <color name="colorDivider">#D6D6D6</color>
     <color name="color_azul">#3D6DE3</color>
-    <color name="color_amarillo_bajo">#F3D878</color>
+    <color name="color_amarillo_bajo">#767271</color>
     <color name="color_verde">#4AA344</color>
     <color name="color_verde_aceptado">#2FAF83</color>
+
+    <color name="colo_button_accept">#8AD147</color>
 
     <color name="color_error">#e63946</color>
 </resources>

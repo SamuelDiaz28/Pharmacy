@@ -527,6 +527,13 @@ public class ComunMethod{
             }
         });
 
+        view.findViewById(R.id.imgIcon).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
+
         if (alertDialog.getWindow() != null) {
             alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
         }
@@ -604,6 +611,13 @@ public class ComunMethod{
         });*/
 
         view.findViewById(R.id.terminar).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
+
+        view.findViewById(R.id.imgIcon).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 alertDialog.dismiss();
